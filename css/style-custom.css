@@ -1,0 +1,79 @@
+.dd{
+    border:1px solid #000
+}
+.ddr{
+    border:1px solid #000;
+    background-color:red;
+}
+
+
+
+.brand-logo{
+    height:80px;
+}
+
+/*definicao de cores*/
+.theme-colors-btn-defalut-bg{
+    background-color:#cbd4e6ff;
+}
+.theme-colors-btn-blue{
+    color:rgb(6, 89, 255);
+}
+.theme-border-black{
+    border:1px solid #000
+}
+
+.theme-colors-btn-defalut-bg:hover{
+    background-color:#fff;
+    font-size:18px;
+}
+
+.theme-colors-btn-defalut-bg:hover{
+    background-color:#fff;
+    font-size:18px;
+}
+
+.theme-btn-round{
+    border-radius: 65px;
+    border-radius: 65px !important;
+    border-radius: 65px;
+    border-top-left-radius: 65px;
+    border-top-right-radius: 65px;
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+    behavior: url(border-radius.htc);
+}
+
+ 
+
+.theme-roi-brand-logo-base{
+    background:#fff;
+}
+
+.theme-roi-base{
+    background:#177fbd;
+}
+
+
+.theme-roi-img-flyer{
+   position: relative;
+   height:630px;
+   
+
+}
+
+.theme-btn-round-heigth{
+    height:60px;
+    width:300px;
+}
+
+
+.theme-btn-round-heigth-title{
+   position:relative;
+   height:100% ;
+   margin-top:13px; 
+   text-align:center
+}
+
+
+
