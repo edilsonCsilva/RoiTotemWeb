@@ -1,4 +1,6 @@
 const express = require("express")
+ 
+
 const cors    =require("cors")
 const bodyParser = require("body-parser")
 const swig  = require('swig');
@@ -6,7 +8,8 @@ const  app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-
+ 
+ 
 
 const title="Still, Roi!"
  
@@ -19,6 +22,11 @@ app.get("/js/:js", function(req,res){
     res.sendFile(__dirname + "/js/"+req.params.js)
 })
   
+app.get("/js/qr/:js", function(req,res){
+    res.sendFile(__dirname + "/js/qr/"+req.params.js)
+})
+  
+
 app.get("/img/:img", function(req,res){
     res.sendFile(__dirname + "/img/"+req.params.img)
 })
@@ -44,3 +52,7 @@ app.listen(8089,function(){
     console.log("Rodando...")
 })
  
+
+
+                             
+                        
