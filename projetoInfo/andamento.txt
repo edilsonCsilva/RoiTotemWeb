@@ -1,4 +1,6 @@
 1-install dependencias do projeto
 2-install dependencias do projeto e bootstrap e swing template_10022021_0956 
 3-view_de_inicio_10022021_1331
+4-modulo_web_cam_qrcode_10022021_1540
+
 

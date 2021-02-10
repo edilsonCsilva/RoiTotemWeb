@@ -7,9 +7,10 @@ $(document).ready(function () {
 	qrcode.callback = showInfo;
 });
 function readQRCode(){
-	setTimeout(function(){
+	setInterval(function(){
 		$('#scan').click()
-	},500)
+		console.log("read")
+	},1000)
 }
 function take_snapshot() {
 	Webcam.snap(function (dataUrl) {
@@ -23,9 +24,8 @@ function qrCodeDecoder(dataUrl) {
 // show info from qr code
 function showInfo(data) {
 	//$("#qrContent p").text(data);
-	if(data.length==0){
-		readQRCode()
-	}else{
-	  console.log(data)
-	}
+	if(data.length > 0){
+		console.log(data)
+		alert(data)
+	} 
 }
