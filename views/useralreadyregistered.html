@@ -65,17 +65,17 @@
                                         <div class="col-sm-12">
                                             <div class="text-center"  >
                                                 <input type="text" class="theme-btn-round-heigth" 
-                                                style=" border-radius: 20px; border:0px;" id=""  placeholder="Celular">
+                                                style=" border-radius: 20px; border:0px;" id="input_fone"  placeholder="Celular">
                                             </div>
                                         </div>
                                         <div class="col-sm-12 " style="padding:25px;">
                                             <div class="text-center" style="padding:5px;">
-                                                <a href="#" id="" class="btn btn-blocks
+                                                <a href="#" id="btn_process" class="btn btn-blocks
                                                  btn-primary theme-btn-round  theme-btn-round-heigth   " 
                                                  style="vertical-align:middle;">
                                                  <div  class="theme-btn-round-heigth-title ">
                                                      <span class="colors-write">
-                                                     <b>SOU NOVO POR AQUI</b>
+                                                     <b>ENVIAR</b>
                                                  </span></div>
                                                 </a>
                                             </div>
@@ -130,12 +130,60 @@
     <script>
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
+    var isClick=false;
     if(token==null || token.data.length ==0){
         location.href="/"
     }
-
+  
     $(document).ready(function(){
-         
+          $("#btn_process").on("click",function(){
+            if(isClick){
+                return;
+            }
+
+            setTimeout(function(){
+                            var configs =  Api();
+                            var config = {
+                                headers: {
+                                'Authorization': 'Bearer ' +token.data.token
+                                }
+                            }
+                            var apiUrl=configs.url+configs.routes.totemcustomers+"/search?phone="+ $("#input_fone").val()
+                            axios.get(apiUrl,config)
+                            .then(function(response){
+                                if(response==undefined){s
+                                    isClick=false; 
+                                }
+                                var campaign = localStorger.getToObject("campaign")
+                                var customer_id =response.data.customer.id
+                                var campaign_id = campaign.id
+                                axios.post(configs.url+configs.routes.totemcampaignscustomer, 
+                                  { campaign_id:campaign_id, customer_id: customer_id },config)
+                                .then(function(response){
+                                    console.log(response)
+                                    alert("")
+                                }).then(data => {
+                                    console.log("1 ",data)
+                                })
+                                .catch(error => {
+                                        console.log("2 ",error.response.data.error)
+                                });
+                                isClick=true;
+                            }).then(data => {
+                                console.log("1 ",data)
+                                 
+                            })
+                            .catch(error => {
+                                    console.log("2 ",error.response.data.error)
+                                    
+                            });
+                    
+                    },1000)
+            })
+
+           
+          
+            
     });
     </script>
 

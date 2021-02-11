@@ -58,8 +58,17 @@ app.get("/useralreadyregistered", function(req,res){
         title: title
     }))
 })
-    
 
+app.get("/printcoupon", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/printcoupon.html', {
+        title: title
+    }))
+}) 
+
+    
+ 
+         
+    
  
  
     
@@ -77,6 +86,10 @@ app.listen(8089,function(){
  
 
 
+   
+
+                 
+        
 
 
      
@@ -85,3 +98,4 @@ app.listen(8089,function(){
                              
 
 
+ 

@@ -5,7 +5,9 @@ function Api(){
         "password":"user2",
         "routes":{
             "oauth":'totem/login',
-            "totemcampaigns":'totem/campaigns'
+            "totemcampaigns":'totem/campaigns',
+            "totemcustomers":'totem/customers',
+            "totemcampaignscustomer":'totem/campaigns/customer'
         
         }
         

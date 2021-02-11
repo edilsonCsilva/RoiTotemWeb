@@ -8,4 +8,4 @@
 8-view_de_selecao_11022021_1125_1222
 9-view_de_selecao_11022021_1222_1254
 10-view_de_redistrado_11022021_1254_1354
-
+11-view_de_redistrado_campanha_cliente_11022021_1354_1440

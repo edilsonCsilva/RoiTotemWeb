@@ -95,7 +95,6 @@
     
     $(document).ready(function(){
         var configs =  Api();
-
         console.log(configs.routes)
         axios.post(configs.url+configs.routes.oauth, { username: configs.username, password: configs.password })
         .then(function(response){
