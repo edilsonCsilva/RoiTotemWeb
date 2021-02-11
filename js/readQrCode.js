@@ -26,6 +26,9 @@ function showInfo(data) {
 	//$("#qrContent p").text(data);
 	if(data.length > 0){
 		console.log(data)
+		beep(1000, 2, function () {
+			 
+		});
 		alert(data)
 	} 
 }
