@@ -128,10 +128,10 @@
    //Validar Usuario
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
-    var configs =  Api();
-    if(token.data.length ==0){
+    if(token==null || token.data.length ==0){
         location.href="/"
-    } 
+    }
+
 
     
         

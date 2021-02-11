@@ -17,6 +17,8 @@ function qrCodeDecoder(dataUrl) {
 }
 // show info from qr code
 function readScanner(resumeScanner) {
+	var configs =  Api();
+	
 	//$("#qrContent p").text(data);
 	if(resumeScanner.length > 0){
 		console.log(resumeScanner)

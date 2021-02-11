@@ -27,8 +27,61 @@
     <div class="container ">
         <!-- Content here -->
 
-        <div class="row" >
-            
+        <div class="row " >
+            <div class="col-sm-12" style="padding:5px;">
+                <div class="text-center" style="padding:5px;">
+                        <label><h1 class="colors-write"> OLÁ, SEJA BEM VINDO! TUDO BEM?</h1></label>
+                </div>    
+            </div>
+            <div class="col-sm-12 ">
+                <div class="text-center" style="padding:5px;">
+                    <label>
+                        <h5 class="colors-write"> 
+                            VOCÊ JÁ É CADASTRADO
+                            OU NOVO POR AQUI?
+                        </h5>
+                    </label>
+                </div>
+                    
+             </div>
+
+             <div class="col-sm-12 ">
+                <div class="text-center" style="padding:5px;">
+                            <img src="/img/imagens-15-write.png" class="img  "  />
+                </div>
+             </div>
+
+             <div class="col-sm-12" style="padding:25px;">
+                <div class="text-center" style="padding:5px;">
+                    <a href="#" id="" class="btn btn-blocks
+                     btn-default theme-btn-round  theme-btn-round-heigth  theme-colors-btn-defalut-bg" 
+                     style="vertical-align:middle;">
+                     <div  class="theme-btn-round-heigth-title"><span class="theme-colors-btn-blue ">
+                         <b>JÁ SOU CADASTRADO</b>
+                     </span></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-12 " style="padding:25px;">
+                <div class="text-center" style="padding:5px;">
+                    <a href="#" id="" class="btn btn-blocks
+                     btn-default theme-btn-round  theme-btn-round-heigth  theme-colors-btn-defalut-bg" 
+                     style="vertical-align:middle;">
+                     <div  class="theme-btn-round-heigth-title"><span class="theme-colors-btn-blue">
+                         <b>SOU NOVO POR AQUI</b>
+                     </span></div>
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+          
         </div>
         <!-- Content here -->
 
@@ -51,10 +104,9 @@
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
     <script>
-
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
-    if(token.data.length ==0){
+    if(token==null || token.data.length ==0){
         location.href="/"
     }
 
