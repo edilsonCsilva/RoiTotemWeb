@@ -30,8 +30,8 @@ function readScanner(resumeScanner) {
 		var apiUrl=configs.url+configs.routes.totemcampaigns+"/search?hash="+resumeScanner[1]
 		axios.get(apiUrl,config)
         .then(function(response){
-            localStorger
-            console.log(response)
+            localStorger.insert("campaign",JSON.stringify(response.data.campaign))
+            location.href="/selectaccess"
         }).then(data => {
                console.log("1 ",data)
         })
@@ -46,6 +46,8 @@ function readScanner(resumeScanner) {
 
 
 
+
+
 $(document).ready(function () {
 	Webcam.attach('#webcam');
 	$("#scan").on("click", function(){
@@ -53,4 +55,5 @@ $(document).ready(function () {
 	})
 	readQRCode()
 	qrcode.callback = readScanner;
+
 });

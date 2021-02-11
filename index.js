@@ -40,10 +40,24 @@ app.get("/", function(req,res){
 
 
 app.get("/start", function(req,res){
-    res.send(swig.renderFile(__dirname+'/views/start.html', {
+    res.send(swig.renderFile(__dirname+'/views/consultcampaign.html', {
         title: title
     }))
   })
+
+
+
+app.get("/selectaccess", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/selectaccess.html', {
+        title: title
+    }))
+  })
+
+
+   
+
+
+
 
 
 //Fim rotas do site 
@@ -51,11 +65,14 @@ app.get("/start", function(req,res){
 app.listen(8089,function(){
     console.log("Rodando...")
 })           
-
+ 
 
 
 
       
+
+   
+    
 
                
                                      

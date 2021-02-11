@@ -24,46 +24,12 @@
         </nav>
     </header>
 
-    <div class="container-fluid ">
+    <div class="container ">
         <!-- Content here -->
 
         <div class="row" >
-            <div class="col  mx-auto ">
-             <img src="/img/imagens-09.png"  class="theme-roi-img-flyer"/>
-            </div>
-            <div class="col  ">
-              
-                <div class="" style="margin-top:200px">
-                    <div class="text-center">
-                        <label>
-                            <h1 class="colors-mintcream">IMPRIMA SEU CUPOM
-                                DE DESCONTO</h1>
-                        </label>
-                     </div>
-
-                    <div class="text-center" style="padding:5px;">
-                        <a href="#" id="OnClickNext" class="btn btn-blocks
-                         btn-default theme-btn-round  theme-btn-round-heigth  theme-colors-btn-defalut-bg" 
-                         style="vertical-align:middle;">
-                         <div  class="theme-btn-round-heigth-title"><span class="theme-colors-btn-blue">
-                             <b>IMPRIMIR</b>
-                         </span></div>
-                        </a>
-                    </div>
-                    
-
-                </div>
-
-
-            </div>
+            
         </div>
-        
-           
-
-
-
-
-
         <!-- Content here -->
 
     </div>
@@ -83,16 +49,15 @@
     <script src="/js/configs.js" ></script>
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
-    
-
     <script src="/js/axios.min.js" ></script>
-    
-
     <script>
 
     var localStorger = new LocalStorger()
-    localStorger.cls()
-    
+    var token=localStorger.getToObject("token")
+    if(token.data.length ==0){
+        location.href="/"
+    }
+
     $(document).ready(function(){
         var configs =  Api();
 

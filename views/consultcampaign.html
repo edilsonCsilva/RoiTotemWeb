@@ -93,16 +93,7 @@
     </div>
 
     <div id="scan"></div>
-
-
-
-
-
-
-
-   
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    
     <script type="text/javascript" src="/js/instascan.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js" ></script>
     <script src="/js/bootstrap.min.js" ></script>
@@ -110,12 +101,8 @@
     <script src="/js/configs.js" ></script>
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
-
     <script src="/js/axios.min.js" ></script>
-
-
-
-  <!--/*Scripts QrCode*/ -->
+    <!--/*Scripts QrCode*/ -->
     <script src="/js/webcam.min.js"></script>
 	<script type="text/javascript" src="/js/qr/grid.js"></script>
 	<script type="text/javascript" src="/js/qr/version.js"></script>
@@ -137,28 +124,21 @@
 	<script src="/js/readQrCode.js"></script>
   <!--/*Scripts QrCode*/ -->
 
-
-    
-
-
-    <script>
+   <script>
+   //Validar Usuario
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var configs =  Api();
-    $(document).ready(function(){
+    if(token.data.length ==0){
+        location.href="/"
+    } 
 
-        console.log(token)
+    
+        
 
+   </script>
 
-
-      
- 
-
-
-
-    });
-    </script>
-
+    
  
   </body>
 </html>

@@ -5,3 +5,4 @@
 5-modulo_localstore_11022021_0920_0936
 6-get_user_api_11022021_0935_0951
 7-get_companha_api_11022021_0951_1125
+8-view_de_selecao_11022021_1125_1222
