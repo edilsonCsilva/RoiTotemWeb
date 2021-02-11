@@ -50,9 +50,14 @@ app.get("/start", function(req,res){
 
 app.listen(8089,function(){
     console.log("Rodando...")
-})
+})           
 
-          
+
+
+
+      
+
+               
                                      
 
 

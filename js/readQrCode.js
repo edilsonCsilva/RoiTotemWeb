@@ -1,17 +1,11 @@
-$(document).ready(function () {
-	Webcam.attach('#webcam');
-	$("#scan").on("click", function(){
-		take_snapshot();
-	})
-	readQRCode()
-	qrcode.callback = showInfo;
-});
 function readQRCode(){
 	setInterval(function(){
 		$('#scan').click()
 		console.log("read")
 	},1000)
 }
+
+
 function take_snapshot() {
 	Webcam.snap(function (dataUrl) {
 		qrCodeDecoder(dataUrl);
@@ -22,13 +16,41 @@ function qrCodeDecoder(dataUrl) {
 	qrcode.decode(dataUrl);
 }
 // show info from qr code
-function showInfo(data) {
+function readScanner(resumeScanner) {
 	//$("#qrContent p").text(data);
-	if(data.length > 0){
-		console.log(data)
-		beep(1000, 2, function () {
-			 
+	if(resumeScanner.length > 0){
+		console.log(resumeScanner)
+		beep(100, 1, function () {});
+		var resumeScanner=resumeScanner.split(":")
+		var config = {
+			headers: {
+			  'Authorization': 'Bearer ' +token.data.token
+			}
+		  }
+		var apiUrl=configs.url+configs.routes.totemcampaigns+"/search?hash="+resumeScanner[1]
+		axios.get(apiUrl,config)
+        .then(function(response){
+            localStorger
+            console.log(response)
+        }).then(data => {
+               console.log("1 ",data)
+        })
+        .catch(error => {
+                console.log("2 ",error.response.data.error)
 		});
-		alert(data)
+		
+
+		//alert(data)
 	} 
 }
+
+
+
+$(document).ready(function () {
+	Webcam.attach('#webcam');
+	$("#scan").on("click", function(){
+		take_snapshot();
+	})
+	readQRCode()
+	qrcode.callback = readScanner;
+});

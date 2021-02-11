@@ -17,6 +17,15 @@ function LocalStorger(){
         localStorage.removeItem(key);
     };
 
+    this.get=function(key){
+        return localStorage.getItem(key);
+    };
+
+    this.getToObject=function(key){
+        return JSON.parse(localStorage.getItem(key));
+    };
+
+
 
 
 

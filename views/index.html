@@ -76,10 +76,11 @@
 
    
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="/js/configs.js" ></script>
+   
     <script src="/js/bootstrap.bundle.min.js" ></script>
     <script src="/js/bootstrap.min.js" ></script>
     <script src="/js/jquery-3.5.1.min.js" ></script>
+    <script src="/js/configs.js" ></script>
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
     
@@ -92,11 +93,18 @@
     var localStorger = new LocalStorger()
     $(document).ready(function(){
         var configs =  Api();
-        axios.post(configs.url+'totem/login', { username: configs.username, password: configs.password })
+
+        console.log(configs.routes)
+        axios.post(configs.url+configs.routes.oauth, { username: configs.username, password: configs.password })
         .then(function(response){
             localStorger.insert("token",JSON.stringify(response))
+            console.log(response)
+        }).then(data => {
+               console.log("1 ",data)
+        })
+        .catch(error => {
+                console.log("2 ",error.response.data.error)
         });
-
 
 
         $("#OnClickNext").on('click', function(){
