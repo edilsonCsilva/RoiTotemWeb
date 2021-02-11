@@ -87,6 +87,17 @@ theme-btn-round-heigth-2{
     background-image: url(/img/imagens-qrcode1.png);
     background-repeat: no-repeat;
  }
+
+ .theme-center-div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+ }
+
+
+
+
+
  
 
 

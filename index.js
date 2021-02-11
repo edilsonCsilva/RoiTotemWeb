@@ -53,26 +53,35 @@ app.get("/selectaccess", function(req,res){
     }))
   })
 
+app.get("/useralreadyregistered", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/useralreadyregistered.html', {
+        title: title
+    }))
+})
+    
+
+ 
+ 
     
    
 
 
 
-
+ 
 
 //Fim rotas do site 
 
 app.listen(8089,function(){
     console.log("Rodando...")
-})           
+})            
  
 
 
 
 
+     
 
 
+                             
 
 
-
- 
