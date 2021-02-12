@@ -66,13 +66,18 @@ app.get("/printcupom", function(req,res){
 }) 
   
 
-
+app.get("/newrecord", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/newrecord.html', {
+        title: title
+    }))
+}) 
 
      
 
                 
            
    
+
 
     
  
@@ -98,6 +103,7 @@ app.listen(8089,function(){
    
 
                  
+
         
 
 
@@ -105,7 +111,7 @@ app.listen(8089,function(){
 
 
                              
-
+ 
 
  
 
