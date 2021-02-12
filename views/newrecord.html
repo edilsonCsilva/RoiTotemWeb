@@ -162,6 +162,8 @@
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
     <script>
+
+    var Api = Api()    
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var campaign=localStorger.getToObject("campaign")
@@ -170,6 +172,21 @@
     }
 
     $(document).ready(function(){
+
+        $("#input_zipcode").keyup(function(){
+            
+            setTimeout(function(el){
+                var zipcode=$(el).val()
+
+                console.log(zipcode)
+
+
+           
+           
+            }($("#input_zipcode")),2000)
+            
+
+        })
 
         $("#btnSave").on("click",function(){
             var data={

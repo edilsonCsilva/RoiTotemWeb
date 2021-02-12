@@ -7,7 +7,8 @@ function Api(){
             "oauth":'totem/login',
             "totemcampaigns":'totem/campaigns',
             "totemcustomers":'totem/customers',
-            "totemcampaignscustomer":'totem/campaigns/customer'
+            "totemcampaignscustomer":'totem/campaigns/customer',
+            "publiczipcodes":"public/zipcodes"
         
         }
         
