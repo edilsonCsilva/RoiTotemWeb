@@ -59,12 +59,14 @@ app.get("/useralreadyregistered", function(req,res){
     }))
 })
 
-app.get("/printcoupon", function(req,res){
-    res.send(swig.renderFile(__dirname+'/views/printcoupon.html', {
+app.get("/printcupom", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/printcupom.html', {
         title: title
     }))
 }) 
   
+
+
 
      
 
@@ -106,3 +108,4 @@ app.listen(8089,function(){
 
 
  
+
