@@ -212,8 +212,9 @@
                 number_house:$("#input_number").val(),
                 campaign_id:campaign.id
             }
+
             try{
-                
+                localStorger.insert("customers",JSON.stringify(data))
                 var configs =  Api();
                 var configRequestsAxios = {
                                 headers: {

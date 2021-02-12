@@ -28,12 +28,21 @@
         <!-- Content here -->
 
         <div class="row " >
-            <div class="col-sm-12" style="padding:5px;">
-                <div class="text-center" style="padding:5px;">
-                        <label><h5 class="colors-write"> MUITO FELIZ EM VER VOCÊ POR AQUI MÁRCIO!</h5></label> 
-                        <img src="/img/imagens-15-write.png" class="img" style="height:128px;"  />
+            <div class="col-sm-10 p-3" >
+                <div class="text-center" >
+                        <label><h5 class="colors-write"> MUITO FELIZ EM VER VOCÊ POR AQUI <div id="spName"></div> </h5>  </label> 
+                </div> 
+                  
+            </div>
+            <div class="col-sm-2 " >
+                <div class="text-left" >
+                    <img src="/img/imagens-15-write.png" class="img" style="height:64px;"  />
                 </div>    
             </div>
+           
+
+           
+
             <div class="col-sm-6">
                 <div class="theme-center-div" 
                  >
@@ -128,17 +137,22 @@
     <script>
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
+    var customers=localStorger.getToObject("customers")
     if(token==null || token.data.length ==0){
         location.href="/"
     }
-
     $(document).ready(function(){
-
-
-
-
+        
+        try { 
+             
+            $("#spName").html(customers.full_name)
+    
+    
+        }catch(e){
+            console.log(e)
+        }
         setTimeout(function(){
-            location.href="/"
+              location.href="/"
         },6000)
 
     

@@ -89,10 +89,10 @@ app.get("/newrecord", function(req,res){
  
  
     
-   
+    
 
 
-
+    
  
 
 //Fim rotas do site 
@@ -104,7 +104,8 @@ app.listen(8089,function(){
 
 
    
-
+         
+ 
        
               
 
@@ -114,6 +115,8 @@ app.listen(8089,function(){
 
 
      
+
+      
 
                                                          
                                   
