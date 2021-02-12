@@ -8,7 +8,8 @@ function Api(){
             "totemcampaigns":'totem/campaigns',
             "totemcustomers":'totem/customers',
             "totemcampaignscustomer":'totem/campaigns/customer',
-            "publiczipcodes":"public/zipcodes"
+            "publiczipcodes":"public/zipcodes",
+            "totemcustomersstore":"totem/customers/store"
         
         }
         
