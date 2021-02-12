@@ -16,6 +16,23 @@
 .theme-colors-btn-defalut-bg{
     background-color:#cbd4e6ff;
 }
+
+
+.theme-colors-btn-defalut-primary-bg{
+    background-color:rgb(12, 87, 238);
+}
+
+.theme-colors-btn-defalut-primary-bg:hover{
+    background-color:red;
+}
+
+
+.theme-colors-btn-defalut-bg-no-hover{
+    background-color:#cbd4e6ff;
+}
+
+
+
 .theme-colors-btn-blue{
     color:rgb(6, 89, 255);
 }
@@ -44,7 +61,17 @@
     behavior: url(border-radius.htc);
 }
 
+
+ .theme-input-round{
+    height:60px;
+    
+}
  
+input {
+    display: inline-block;
+    padding-left: 20px;
+  }
+
 
 .theme-roi-brand-logo-base{
     background:#fff;

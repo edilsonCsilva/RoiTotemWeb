@@ -8,6 +8,9 @@ const  app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(express.static('views'));
+app.set('view cache', false);
+
  
  
 
@@ -95,23 +98,27 @@ app.get("/newrecord", function(req,res){
 //Fim rotas do site 
 
 app.listen(8089,function(){
-    console.log("Rodando...")
+    console.log("Rodando...")  
 })            
  
 
 
    
 
-                 
+       
+        
 
         
 
 
      
 
+                                                         
+                                  
+
 
                              
- 
+  
 
  
 
