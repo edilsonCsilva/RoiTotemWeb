@@ -45,6 +45,7 @@
 
                               <div class="row p-4">
                                   <div class="col-sm-6 ">
+                                    <input type="hidden" id="__zipcodeid__" value="" /> 
                                     <input type="text" id="input_name"
                                     class="form-control theme-border-black theme-btn-round 
                                     theme-input-round"  placeholder="Nome">
@@ -163,7 +164,7 @@
     <script src="/js/axios.min.js" ></script>
     <script>
 
-    var Api = Api()    
+    
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var campaign=localStorger.getToObject("campaign")
@@ -177,15 +178,29 @@
             
             setTimeout(function(el){
                 var zipcode=$(el).val()
-
-                console.log(zipcode)
-
-
-           
-           
-            }($("#input_zipcode")),2000)
-            
-
+                var configs =  Api();
+                var configRequestsAxios = {
+                                headers: {
+                                'Authorization': 'Bearer ' +token.data.token
+                                }
+                            }
+                var apiUrl=configs.url+configs.routes.publiczipcodes+"/search?postal_code="+ zipcode
+                axios.get(apiUrl,configRequestsAxios)
+                        .then(function(response){
+                            $("#__zipcodeid__").val("")
+                            $("#input_address").val("")
+                            try{
+                                if(response.data.zipcodes!=null){
+                                    var address =response.data.zipcodes[0].public_place
+                                    +", "+response.data.zipcodes[0].district
+                                    +", "+response.data.zipcodes[0].state
+                                    $("#__zipcodeid__").val(response.data.zipcodes[0].id)
+                                    $("#input_address").val(address)
+                                }
+                            }catch(e){}
+                            console.log(response)
+                        })
+            }($("#input_zipcode")),1000)
         })
 
         $("#btnSave").on("click",function(){
@@ -193,12 +208,11 @@
                 full_name:$("#input_name").val(),
                 phone:$("#input_phone").val(),
                 address:$("#input_address").val(),
-                zipcode_id:$("#input_zipcode").val(),
+                zipcode_id:$("#__zipcodeid__").val(),
                 number_house:$("#input_number").val(),
                 campaign_id:campaign.id
             }
-            console.log(data)
-            alert("")
+            
         })
          
     });

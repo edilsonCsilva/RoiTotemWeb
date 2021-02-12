@@ -143,13 +143,13 @@
 
             setTimeout(function(){
                             var configs =  Api();
-                            var config = {
+                            var configRequestsAxios = {
                                 headers: {
                                 'Authorization': 'Bearer ' +token.data.token
                                 }
                             }
                             var apiUrl=configs.url+configs.routes.totemcustomers+"/search?phone="+ $("#input_fone").val()
-                            axios.get(apiUrl,config)
+                            axios.get(apiUrl,configRequestsAxios)
                             .then(function(response){
                                 if(response==undefined){s
                                     isClick=false; 
@@ -159,7 +159,7 @@
                                 var customer_id =response.data.customer.id
                                 var campaign_id = campaign.id
                                 axios.post(configs.url+configs.routes.totemcampaignscustomer, 
-                                  { campaign_id:campaign_id, customer_id: customer_id },config)
+                                  { campaign_id:campaign_id, customer_id: customer_id },configRequestsAxios)
                                 .then(function(response){
                                     location.href="/printcupom"
                                 }).then(data => {
