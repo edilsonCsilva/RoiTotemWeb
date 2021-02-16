@@ -20,15 +20,29 @@
   "homepage": "https://github.com/edilsonCsilva/RoiTotemWeb#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "canvas": "^2.6.1",
     "connect-livereload": "^0.6.1",
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
+    "escpos": "^3.0.0-alpha.6",
     "express": "^4.17.1",
+    "gulp-cli": "^2.3.0",
+    "jsbarcode": "^3.11.3",
+    "node-printer": "^1.0.4",
+    "pdfkit": "^0.11.0",
+    "printer": "^0.4.0",
     "request": "^2.88.2",
+    "shelljs": "^0.8.4",
     "sqlite3": "^5.0.0",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "thermal-printer": "^1.0.5"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
     "nodemon": "^2.0.7"
   }
 }

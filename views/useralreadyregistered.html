@@ -10,7 +10,8 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" >
     <link href="/css/cores.css" rel="stylesheet" >
     <link href="/css/style-custom.css" rel="stylesheet" >
-    <title>{{title}}</title>
+    <link href="/css/stillkeyboard.0.0.1.min.css" rel="stylesheet" >
+    <title>{{title}}</title>    
   </head>
   <body class="theme-roi-base">
     <header class="theme-border-black">
@@ -64,8 +65,8 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="text-center"  >
-                                                <input type="text" class="theme-btn-round theme-input-round theme-border-black" 
-                                                 id="input_fone"  placeholder="Celular">
+                                                <input type="text" class="onfocusClick theme-btn-round theme-input-round theme-border-black" 
+                                                 id="input_fone"   placeholder="Celular">
                                             </div>
                                         </div>
                                         <div class="col-sm-12 " style="padding:25px;">
@@ -127,6 +128,9 @@
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
+    <script src="/js/stillkeyboard.0.0.1.min.js" ></script>
+
+
     <script>
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
