@@ -1,0 +1,49 @@
+/*paleta dec   cores */
+.dd{
+    border:1px solid #000;
+    background-color:rgba(125,254, 0, 0.25)
+
+
+
+}
+
+/*paleta dec   cores */
+
+
+.still-keyboard-close{
+    display: none;
+}
+.still-keyboard-open{
+     
+    position: fixed;
+    width: 100%;
+    
+    bottom:0;
+    display: block;
+    background-color:rgba(132, 235, 29, 0.25)
+}
+.flex-container{
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content:left ;
+    align-items:center;
+    align-content:center;
+    flex-flow: row wrap;
+
+
+}
+
+.flex-item {
+    flex-grow:1;
+    flex-shrink:1;
+  }
+
+.num-pad{
+    position:relative;
+    height:100px;
+    width:100px;
+    padding:25px;
+    
+
+
+}
