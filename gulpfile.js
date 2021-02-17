@@ -3,7 +3,7 @@ const  plumber = require("gulp-plumber")
 const  uglify = require("gulp-uglify")
 const  concat = require("gulp-concat")
 const  rename = require("gulp-rename")
-//const minifycss = require('gulp-minify-css');
+const minifycss = require('gulp-minify-css');
 
 
 
@@ -32,23 +32,26 @@ gulp.task('scripts',function(){
     
 })
 
-/*
-gulp.task( 'css', function() {
-    gulp.src( css_src )
+
+gulp.task('css', function() {
+   return  gulp.src( css_src )
       .pipe( minifycss() )
       .pipe(concat(css_dist_name))
       .pipe( gulp.dest(css_dist ) );
+
+
   });
-*/
+
+
 
 
  
 
 
 
-gulp.task('watch', function() {
+gulp.task('auto', function() {
     gulp.watch(js_src, gulp.series('scripts'));
-    //gulp.watch(js_src, gulp.series('css'));
+    gulp.watch(css_src, gulp.series('css'));
   
   });
   

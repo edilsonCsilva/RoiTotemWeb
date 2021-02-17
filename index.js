@@ -33,6 +33,10 @@ app.get("/css/:style", function(req,res){
     res.sendFile(__dirname + "/css/"+req.params.style )
 })
   
+app.get("/fontawesome/css/:style", function(req,res){
+    res.sendFile(__dirname + "/fontawesome/css/"+req.params.style )
+})
+
 app.get("/js/:js", function(req,res){
     res.sendFile(__dirname + "/js/"+req.params.js)
 })

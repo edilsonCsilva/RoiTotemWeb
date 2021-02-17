@@ -1,0 +1,74 @@
+/*paleta dec   cores */
+.dd{
+    border:1px solid #000;
+    background-color:rgba(125,254, 0, 0.25)
+}
+
+/*paleta dec   cores */
+
+
+.still-keyboard-close{
+    display: none;
+}
+.still-keyboard-open{
+      
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom:0;
+    display: block;
+    background-color:rgba(132, 235, 29, 0.25);
+    z-index:1px;
+}
+.flex-container{
+    display: flex;
+    flex-wrap:wrap ;
+     
+    align-items:center;
+    align-content:center;
+    
+    justify-content: center;
+
+
+
+  
+
+
+    
+
+
+}
+
+.flex-item {
+    flex-grow:2;
+    align-items:space-between;
+    
+  }
+
+.num-pad{
+    position:relative;
+    height:80px;
+    width:80px;
+    padding:25px;
+    
+
+
+
+
+}
+
+
+
+.item-container{
+
+    position: fixed;
+    bottom:0;
+
+ }
+
+
+    
+ .break {
+    flex-basis: 100%;
+    height: 0;
+  }
