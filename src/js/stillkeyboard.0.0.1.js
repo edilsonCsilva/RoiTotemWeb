@@ -84,6 +84,8 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
+                keyboardLetters.push(new ActionComponet(char.charCodeAt(0),"______","flex-item onclickAction num-pad "+spaceClass))
+
             }
             keyboardLetters.push(new ActionComponet(letters[poss].charCodeAt(0),letters[poss],"flex-item onclickAction num-pad "+spaceClass))
         }
@@ -94,6 +96,9 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
+
+                keyboardLetters.push(new ActionComponet(char.charCodeAt(0),"______","flex-item onclickAction num-pad "+spaceClass))
+
             }
 
             keyboardLetters.push(new ActionComponet(char.charCodeAt(0),char,"flex-item onclickAction num-pad "+spaceClass))
@@ -177,7 +182,7 @@ function __openKeyBoard(){
                 var positionYScroll = parseInt($("body").height())
                 var newPositionBodyHeight =positionYScroll+containerstillkeyboardSize
                 $("body").height(newPositionBodyHeight)
-                _setScroll(0,activeComponent.eixoPositions.y )
+                _setScroll(0,-1*activeComponent.eixoPositions.y )
                
             }
         );

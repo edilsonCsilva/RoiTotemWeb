@@ -31,13 +31,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding:3px;
+    align-items: center;
  
 
 }
 
 .flex-item {
-    flex-grow:2;
-    align-items:space-between; justify-content: center;
+    flex-grow:1;
+    align-items: center;
+    justify-content: center;
 }
     
     
