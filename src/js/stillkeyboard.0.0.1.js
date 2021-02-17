@@ -89,7 +89,6 @@ function __initStillKeyboard(){
 
 
         //<button class="flex-item onclickAction num-pad" stillValue="1">1</button>
-
         keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad"))
         keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad"))
         keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad"))
@@ -100,8 +99,8 @@ function __initStillKeyboard(){
         keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad"))
         keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad"))
         keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(-3,"<i class=\"fa fa-backward fa-2x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
         keyboardNum.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
+        keyboardNum.push(new ActionComponet(-3,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
         keyboardNum.push(new ActionComponet(-1,"Cancelar","flex-item onclickAction num-pad btn-warning"))
         keyboardNum.push(new ActionComponet(100,"Enter","flex-item onclickAction num-pad btn-danger"))
         }else{
@@ -122,6 +121,16 @@ function __setOnActionClicks(){
         __events(this,containerstillkeyboard)
         return false;
     })
+
+   
+
+
+
+   
+
+
+    
+ 
 }
 
 function _setScroll(x,y){
@@ -167,8 +176,7 @@ function __closeKeyBoard(){
 
 function __kybNum(){
     containerstillkeyboard.innerHTML=""
-    dd(keyboardNum)
-    var numPad="<div class=\"item-container flex-container\" >"
+     var numPad="<div class=\"item-container flex-container\" >"
              for(poss=0; poss < keyboardNum.length;poss++){  
                         numPad+="<button class=\""+keyboardNum[poss]._class+"\" stillValue=\""+keyboardNum[poss]._id+"\">"+keyboardNum[poss]._label+"</button>"
              }
@@ -179,12 +187,24 @@ function __kybNum(){
 }
 
 //Funcoes 
-
-
 //Inicia o Documento
 $(document).ready(function(){
     
       __initStillKeyboard()
+     
+      $(".onfocusClick").focus(function(){ 
+        activeComponent = {
+            self:this,
+            uuid:this.getAttribute("id"),
+            value:$(this).val(),
+            typekeyborad :this.getAttribute("stilltype"),
+            eixoPositions :this.getBoundingClientRect() 
+        };
+     
+        
+        return false;
+      })
+    
     
      $(".onfocusClick").on("click",function(event){
         activeComponent = {
@@ -196,11 +216,15 @@ $(document).ready(function(){
         };
         if(this.getAttribute("stilltype")=="num"){
              __kybNum()
+
         }
         __openKeyBoard()
        
 
      })
+
+    
+
 })
 
 
@@ -228,10 +252,8 @@ function __events(events,activatedComponent){
             __closeKeyBoard()
         }
     }else if(eventsClick >=0 && eventsClick <=9){
-        
         var newValues=(activeComponent.self.value+""+eventsClick)
         activeComponent.self.value=newValues
-      
         return false;
     }else{
         alert("Evento Não Loacalizado : ["+eventsClick+"]")
