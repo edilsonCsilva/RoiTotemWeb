@@ -1,21 +1,19 @@
 var activeComponent=null
+var activeComponentOldAccessed=null
+
 var containerstillkeyboard=null
 var containerstillkeyboardSize=0
 var keyboardNum=[]
+var keyboardLetters=[]
 var tabComponent =[];
+var capLook=false;
 
-
-
-
-
-
-
-
-
-
+var enter=-400
+var stop =-401
+var deletedChart=-402
+var capLooks=-403
 
 //function construtoras
-
 function InputElement(id,name,positionTheScreen,taborder){
     return {
         _id:id,
@@ -24,8 +22,6 @@ function InputElement(id,name,positionTheScreen,taborder){
         _taborder:taborder
     }
 }
-
-
 function ActionComponet(id,label,_class){
     return {
         _id:id,
@@ -34,12 +30,7 @@ function ActionComponet(id,label,_class){
     }
 }
 
-
-
-
-
 //Debug Tirar
-
 function dd(objects){
     var data =  new Date();
     console.log("***********************************************************\n")
@@ -54,15 +45,76 @@ function dd(objects){
     
 }
 
+//A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,
 
 
 //Funcoes 
+function _setScroll(x,y){
+    window.scrollTo( x, y );
+}
+
+
+function __initPadNum(){
+    keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
+    keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
+    keyboardNum.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
+    keyboardNum.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
+}
+
+
+function __initLetters(){
+    var letters=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",","," ","."]
+    keyboardLetters=[]
+    if(capLook){
+        for(poss=0;poss < letters.length;poss++){
+            var spaceClass=""
+            if(letters[poss]==" "){
+                spaceClass="space"
+            }
+            keyboardLetters.push(new ActionComponet(letters[poss].charCodeAt(0),letters[poss],"flex-item onclickAction num-pad "+spaceClass))
+        }
+        keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-home\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
+    }else{
+        for(poss=0;poss < letters.length;poss++){
+            var char =letters[poss].toLowerCase()
+            var spaceClass=""
+            if(letters[poss]==" "){
+                spaceClass="space"
+            }
+
+            keyboardLetters.push(new ActionComponet(char.charCodeAt(0),char,"flex-item onclickAction num-pad "+spaceClass))
+        }
+        keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
+  
+    }
+    keyboardLetters.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
+    keyboardLetters.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
+    keyboardLetters.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
+    keyboardLetters.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
+
+   
+}
+
+
+
 
 
 function __initStillKeyboard(){
     var msn="Container de Teclado Indefinido: ID:containerstillkeyboard"
     try{
         containerstillkeyboard=$("#containerstillkeyboard")
+        tabComponent=[]
+
         if(typeof containerstillkeyboard.length && containerstillkeyboard.length > 0){
             containerstillkeyboard=containerstillkeyboard[0]
             var elemPagerInput=$(".onfocusClick")
@@ -86,23 +138,8 @@ function __initStillKeyboard(){
                     elemPagerInput[poss].getAttribute("taborder")
                     ))
             }
-
-
-        //<button class="flex-item onclickAction num-pad" stillValue="1">1</button>
-        keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
-        keyboardNum.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
-        keyboardNum.push(new ActionComponet(-3,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
-        keyboardNum.push(new ActionComponet(-1,"Cancelar","flex-item onclickAction num-pad btn-warning"))
-        keyboardNum.push(new ActionComponet(100,"Enter","flex-item onclickAction num-pad btn-danger"))
+            __initPadNum()
+            __initLetters()
         }else{
             alert(msn)
             return false
@@ -121,21 +158,9 @@ function __setOnActionClicks(){
         __events(this,containerstillkeyboard)
         return false;
     })
-
-   
-
+ }
 
 
-   
-
-
-    
- 
-}
-
-function _setScroll(x,y){
-    window.scrollTo( x, y );
-}
 function __openKeyBoard(){
 
     try{
@@ -148,7 +173,7 @@ function __openKeyBoard(){
                 var positionYScroll = parseInt($("body").height())
                 var newPositionBodyHeight =positionYScroll+containerstillkeyboardSize
                 $("body").height(newPositionBodyHeight)
-                _setScroll(0,activeComponent.eixoPositions.y-positionYScroll)
+                _setScroll(0,activeComponent.eixoPositions.y )
                
             }
         );
@@ -186,6 +211,20 @@ function __kybNum(){
        __setOnActionClicks()
 }
 
+
+function __kybLetters(){
+    containerstillkeyboard.innerHTML=""
+     var numPad="<div class=\"item-container flex-container\" >"
+             for(poss=0; poss < keyboardLetters.length;poss++){  
+                        numPad+="<button class=\""+keyboardLetters[poss]._class+"\" stillValue=\""+keyboardLetters[poss]._id+"\">"+keyboardLetters[poss]._label+"</button>"
+             }
+        numPad+="</div>";
+       containerstillkeyboard.innerHTML =numPad
+     
+       __setOnActionClicks()
+}
+
+
 //Funcoes 
 //Inicia o Documento
 $(document).ready(function(){
@@ -207,6 +246,7 @@ $(document).ready(function(){
     
     
      $(".onfocusClick").on("click",function(event){
+        var isOpen=false
         activeComponent = {
             self:this,
             uuid:this.getAttribute("id"),
@@ -216,9 +256,19 @@ $(document).ready(function(){
         };
         if(this.getAttribute("stilltype")=="num"){
              __kybNum()
-
+             isOpen=true
+             
+        }else  if(this.getAttribute("stilltype")=="letters"){
+            __kybLetters()
+            isOpen=true
         }
-        __openKeyBoard()
+
+
+
+        if(isOpen){
+            __openKeyBoard()
+        }
+     
        
 
      })
@@ -234,14 +284,18 @@ $(document).ready(function(){
 
 function __events(events,activatedComponent){
     var eventsClick=parseInt($(events).attr("stillvalue"));
-
-
     var newValues=(activeComponent.self.value+""+eventsClick)
-    console.log({events,newValues})
-    if(eventsClick==-1){
-        __closeKeyBoard()
+    var activeComponentOldAccessed =activeComponent
 
-    } else if(eventsClick==-3){
+    
+    // console.log({events,newValues})
+
+  //
+  // console.log("#5 ",activeComponent)
+    if(eventsClick==stop){
+        __closeKeyBoard()
+    } else if(eventsClick==deletedChart){
+       
         if(activeComponent.self.value.trim().length > 0){
             var size=activeComponent.self.value.length-1
             var objectCopy =activeComponent.self.value
@@ -252,9 +306,51 @@ function __events(events,activatedComponent){
             __closeKeyBoard()
         }
     }else if(eventsClick >=0 && eventsClick <=9){
+        
         var newValues=(activeComponent.self.value+""+eventsClick)
         activeComponent.self.value=newValues
         return false;
+    }else if(eventsClick >=97 && eventsClick <=122){
+       
+        var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
+        activeComponent.self.value=newValues
+        return false;
+    }else if(eventsClick >=65 && eventsClick <=90){
+       
+        var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
+        activeComponent.self.value=newValues
+        return false;
+    }else if(eventsClick==32){
+       
+        var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
+        activeComponent.self.value=newValues
+        return false;
+    }else if(eventsClick==-403){
+        capLook=!capLook
+        __initLetters()
+        __kybLetters()
+        __openKeyBoard()
+        return false;
+    }else if(eventsClick==-400){
+
+        __closeKeyBoard()
+        for(var indice =0 ; indice < tabComponent.length;indice++){
+
+            if(tabComponent[indice]._id==activeComponentOldAccessed.uuid){
+                var i=indice
+                i++
+                if(typeof tabComponent[i]!='undefined'){
+                    $("#"+tabComponent[i]._id).click()
+                } 
+                break
+            }
+          
+          
+
+        }
+
+     
+
     }else{
         alert("Evento Não Loacalizado : ["+eventsClick+"]")
     }

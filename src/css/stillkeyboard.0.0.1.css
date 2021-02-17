@@ -17,11 +17,12 @@
     height: 100%;
     bottom:0;
     display: block;
-    background-color:rgba(132, 235, 29, 0.25);
+  /*  background-color:rgba(132, 235, 29, 0.25);*/
     z-index:1px;
+    padding:2px;
 }
 .flex-container{
-     
+    display: flex; 
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -29,6 +30,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding:3px;
  
 
 }
@@ -46,11 +48,11 @@
     height:80px;
     width:80px;
     padding:25px;
+}
+
+.num-pad .space{
     
-
-
-
-
+    
 }
 
 
