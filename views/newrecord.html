@@ -72,7 +72,7 @@
 
                                         <div class="col">
                                             <input type="text" stilltype="num" taborder="4"  id="input_zipcode" 
-                                            class="onfocusClick  form-control  theme-border-black theme-btn-round theme-input-round" 
+                                            class="onfocusClick onchange  form-control  theme-border-black theme-btn-round theme-input-round" 
                                             placeholder="Cep"> 
                                         </div>
                                         <div class="col">
@@ -182,6 +182,11 @@
     }
 
     $(document).ready(function(){
+
+
+        $("#input_zipcode").change(function(){
+             $(this).keyup()
+        })
 
         $("#input_zipcode").keyup(function(){
             

@@ -12,6 +12,10 @@ var enter=-400
 var stop =-401
 var deletedChart=-402
 var capLooks=-403
+var turnBack=-404
+
+
+
 
 //function construtoras
 function InputElement(id,name,positionTheScreen,taborder){
@@ -65,7 +69,7 @@ function __initPadNum(){
     keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad"))
     keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad"))
     keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
+    keyboardNum.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
     keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
     keyboardNum.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
     keyboardNum.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
@@ -97,7 +101,7 @@ function __initLetters(){
         keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
   
     }
-    keyboardLetters.push(new ActionComponet(-2,"Return","flex-item onclickAction num-pad btn-info"))
+    keyboardLetters.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
     keyboardLetters.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
     keyboardLetters.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
     keyboardLetters.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
@@ -226,57 +230,6 @@ function __kybLetters(){
 
 
 //Funcoes 
-//Inicia o Documento
-$(document).ready(function(){
-    
-      __initStillKeyboard()
-     
-      $(".onfocusClick").focus(function(){ 
-        activeComponent = {
-            self:this,
-            uuid:this.getAttribute("id"),
-            value:$(this).val(),
-            typekeyborad :this.getAttribute("stilltype"),
-            eixoPositions :this.getBoundingClientRect() 
-        };
-     
-        
-        return false;
-      })
-    
-    
-     $(".onfocusClick").on("click",function(event){
-        var isOpen=false
-        activeComponent = {
-            self:this,
-            uuid:this.getAttribute("id"),
-            value:$(this).val(),
-            typekeyborad :this.getAttribute("stilltype"),
-            eixoPositions :this.getBoundingClientRect() 
-        };
-        if(this.getAttribute("stilltype")=="num"){
-             __kybNum()
-             isOpen=true
-             
-        }else  if(this.getAttribute("stilltype")=="letters"){
-            __kybLetters()
-            isOpen=true
-        }
-
-
-
-        if(isOpen){
-            __openKeyBoard()
-        }
-     
-       
-
-     })
-
-    
-
-})
-
 
 
 
@@ -309,21 +262,33 @@ function __events(events,activatedComponent){
         
         var newValues=(activeComponent.self.value+""+eventsClick)
         activeComponent.self.value=newValues
+        if($(activeComponent.self).hasClass("onchange")){
+            $(activeComponent.self).change()
+        }
+        
         return false;
     }else if(eventsClick >=97 && eventsClick <=122){
        
         var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
         activeComponent.self.value=newValues
+        if($(activeComponent.self).hasClass("onchange")){
+            $(activeComponent.self).change()
+        }
         return false;
     }else if(eventsClick >=65 && eventsClick <=90){
        
         var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
         activeComponent.self.value=newValues
+        if($(activeComponent.self).hasClass("onchange")){
+            $(activeComponent.self).change()
+        }
         return false;
     }else if(eventsClick==32){
-       
         var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
         activeComponent.self.value=newValues
+        if($(activeComponent.self).hasClass("onchange")){
+            $(activeComponent.self).change()
+        }
         return false;
     }else if(eventsClick==-403){
         capLook=!capLook
@@ -332,25 +297,31 @@ function __events(events,activatedComponent){
         __openKeyBoard()
         return false;
     }else if(eventsClick==-400){
-
         __closeKeyBoard()
         for(var indice =0 ; indice < tabComponent.length;indice++){
-
             if(tabComponent[indice]._id==activeComponentOldAccessed.uuid){
                 var i=indice
                 i++
                 if(typeof tabComponent[i]!='undefined'){
+                    $("#"+tabComponent[i]._id).focus()
                     $("#"+tabComponent[i]._id).click()
                 } 
                 break
             }
-          
-          
-
         }
-
-     
-
+    }else if(eventsClick==-404){
+        __closeKeyBoard()
+        for(var indice =0 ; indice < tabComponent.length;indice++){
+            if(tabComponent[indice]._id==activeComponentOldAccessed.uuid){
+                var i=indice
+                i--
+                if(typeof tabComponent[i]!='undefined'){
+                    $("#"+tabComponent[i]._id).focus()
+                    $("#"+tabComponent[i]._id).click()
+                } 
+                break
+            }
+        }
     }else{
         alert("Evento Não Loacalizado : ["+eventsClick+"]")
     }
@@ -360,3 +331,55 @@ function __events(events,activatedComponent){
 
 
 }
+
+
+
+//Inicia o Documento
+$(document).ready(function(){
+    
+    __initStillKeyboard()
+   
+    $(".onfocusClick").focus(function(){ 
+      activeComponent = {
+          self:this,
+          uuid:this.getAttribute("id"),
+          value:$(this).val(),
+          typekeyborad :this.getAttribute("stilltype"),
+          eixoPositions :this.getBoundingClientRect() 
+      };
+   
+      
+      return false;
+    })
+  
+  
+   $(".onfocusClick").on("click",function(event){
+      var isOpen=false
+      activeComponent = {
+          self:this,
+          uuid:this.getAttribute("id"),
+          value:$(this).val(),
+          typekeyborad :this.getAttribute("stilltype"),
+          eixoPositions :this.getBoundingClientRect() 
+      };
+      if(this.getAttribute("stilltype")=="num"){
+           __kybNum()
+           isOpen=true
+           
+      }else  if(this.getAttribute("stilltype")=="letters"){
+          __kybLetters()
+          isOpen=true
+      }
+
+
+
+      if(isOpen){
+          __openKeyBoard()
+      }
+   
+     
+
+   })
+})
+
+
