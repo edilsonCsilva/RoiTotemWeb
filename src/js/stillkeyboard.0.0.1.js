@@ -148,8 +148,8 @@ function __initPadNum(){
     keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
     keyboardNum.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
     keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
-    keyboardNum.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
-    keyboardNum.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
+    keyboardNum.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning"))
+    keyboardNum.push(new ActionComponet(enter,"Próximo","flex-item onclickAction num-pad btn-danger"))
 }
 
 
@@ -187,8 +187,8 @@ function __initLetters(){
     }
     keyboardLetters.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
     keyboardLetters.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
-    keyboardLetters.push(new ActionComponet(stop,"Cancelar","flex-item onclickAction num-pad btn-warning"))
-    keyboardLetters.push(new ActionComponet(enter,"Enter","flex-item onclickAction num-pad btn-danger"))
+    keyboardLetters.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning"))
+    keyboardLetters.push(new ActionComponet(enter,"Próximo","flex-item onclickAction num-pad btn-danger"))
 
    
 }
@@ -278,7 +278,7 @@ function __closeKeyBoard(){
         .removeClass("still-keyboard-open")
         .addClass("still-keyboard-close")
         var positionYScroll = parseInt($("body").height())
-        var newPositionBodyHeight =Math.abs(positionYScroll-containerstillkeyboardSize)
+        var newPositionBodyHeight =Math.abs(containerstillkeyboardSize)
         $("body").height(newPositionBodyHeight)
         containerstillkeyboard.innerHTML=""
         

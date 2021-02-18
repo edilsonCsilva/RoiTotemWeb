@@ -1,8 +1,10 @@
 function readQRCode(){
-	setInterval(function(){
-		$('#scan').click()
-		console.log("read")
-	},1000)
+	try{
+		setInterval(function(){
+			$('#scan').click()
+			console.log("read")
+		},100)
+	}catch(e){}
 }
 
 
@@ -51,11 +53,13 @@ function readScanner(resumeScanner) {
 
 
 $(document).ready(function () {
-	Webcam.attach('#webcam');
-	$("#scan").on("click", function(){
-		take_snapshot();
-	})
-	readQRCode()
-	qrcode.callback = readScanner;
+	 setTimeout(function(){
+		Webcam.attach('#webcam');
+		$("#scan").on("click", function(){
+			take_snapshot();
+		})
+		readQRCode()
+		qrcode.callback = readScanner;
+	 },1000)
 
 });

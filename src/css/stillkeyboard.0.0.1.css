@@ -5,7 +5,16 @@
 }
 
 /*paleta dec   cores */
-
+.round2 {
+      background:#333;
+      width:450px;
+      margin: auto;
+      padding:10px;
+      text-align:center;
+      -moz-border-radius:67px;
+      -webkit-border-radius:67px;
+      border-radius:63px;
+  }
 
 .still-keyboard-close{
     display: none;
