@@ -129,42 +129,50 @@
   <!--/*Scripts QrCode*/ -->
 
    <script>
-   //Validar Usuario
-    var localStorger = new LocalStorger()
-    var token=localStorger.getToObject("token")
-    if(token==null || token.data.length ==0){
-        location.href="/"
-    }
+       
+       $(document).ready(function(){
 
+        //
+                    var localStorger = new LocalStorger()
+                    var token=localStorger.getToObject("token")
+                    if(token==null || token.data.length ==0){
+                        location.href="/"
+                    }
+                    navigator.getMedia = ( navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia);
 
+                    navigator.getMedia (
 
+                    // permissoes
+                    {
+                        video: true,
+                        audio: true
+                    },
+                    // callbackSucesso
+                    function(localMediaStream) {
+                        
+                    },
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-                       navigator.webkitGetUserMedia ||
-                       navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia);
+                    // callbackErro
+                    function(err) {
+                        console.log("O seguinte erro ocorreu: " + err);
+                    }
 
-navigator.getMedia (
+                    );
+            
+ 
+          setTimeout(function(){
+              window.location.href="/"                
+           },2*10000)          
 
-   // permissoes
-   {
-      video: true,
-      audio: true
-   },
-
-   // callbackSucesso
-   function(localMediaStream) {
-      
-   },
-
-   // callbackErro
-   function(err) {
-    console.log("O seguinte erro ocorreu: " + err);
-   }
-
-);
-    
+        //
+       })
+       
         
+
+
 
    </script>
 

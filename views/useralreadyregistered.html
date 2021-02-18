@@ -152,6 +152,11 @@
     }
   
     $(document).ready(function(){
+
+        setTimeout(function(){
+              window.location.href="/"                
+           },2*10000) 
+           
           $("#btn_process").on("click",function(){
             if(isClick){
                 return;
