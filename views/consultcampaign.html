@@ -133,6 +133,32 @@
     }
 
 
+
+
+    navigator.getMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+
+navigator.getMedia (
+
+   // permissoes
+   {
+      video: true,
+      audio: true
+   },
+
+   // callbackSucesso
+   function(localMediaStream) {
+      
+   },
+
+   // callbackErro
+   function(err) {
+    console.log("O seguinte erro ocorreu: " + err);
+   }
+
+);
     
         
 
