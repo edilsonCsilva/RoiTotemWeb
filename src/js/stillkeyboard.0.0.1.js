@@ -161,10 +161,11 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
-                keyboardLetters.push(new ActionComponet(__ascii(char),"______","flex-item onclickAction num-pad "+spaceClass))
+                keyboardLetters.push(new ActionComponet(32,"______","flex-item onclickAction num-pad "+spaceClass))
 
+            }else{
+                keyboardLetters.push(new ActionComponet(__ascii(letters[poss]),letters[poss],"flex-item onclickAction num-pad "+spaceClass))
             }
-            keyboardLetters.push(new ActionComponet(__ascii(letters[poss]),letters[poss],"flex-item onclickAction num-pad "+spaceClass))
         }
         keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-home\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
     }else{
@@ -173,12 +174,13 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
+                keyboardLetters.push(new ActionComponet(32,"______","flex-item onclickAction num-pad "+spaceClass))
 
-                keyboardLetters.push(new ActionComponet(__ascii(char),"______","flex-item onclickAction num-pad "+spaceClass))
+            }else{
+                keyboardLetters.push(new ActionComponet(__ascii(char),char,"flex-item onclickAction num-pad "+spaceClass))
 
             }
 
-            keyboardLetters.push(new ActionComponet(__ascii(char),char,"flex-item onclickAction num-pad "+spaceClass))
         }
         keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
   
@@ -323,7 +325,7 @@ function __events(events,activatedComponent){
     var activeComponentOldAccessed =activeComponent
 
     
-    // console.log({events,newValues})
+ console.log({events,newValues})
 
   //
   // console.log("#5 ",activeComponent)
