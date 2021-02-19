@@ -205,6 +205,9 @@ function __initStillKeyboard(){
 
         if(typeof containerstillkeyboard.length && containerstillkeyboard.length > 0){
             containerstillkeyboard=containerstillkeyboard[0]
+            $(containerstillkeyboard).on("click",function(){
+              __closeKeyBoard()
+            })
             var elemPagerInput=$(".onfocusClick")
             for(var poss=0 ; poss < elemPagerInput.length;poss++){
                 var posicao=elemPagerInput[poss].getBoundingClientRect()
@@ -265,6 +268,7 @@ function __openKeyBoard(){
                
             }
         );
+
 
 
     }catch(e){ 

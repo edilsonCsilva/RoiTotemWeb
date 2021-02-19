@@ -138,6 +138,7 @@
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var customers=localStorger.getToObject("customers")
+    var campaign=localStorger.getToObject("campaign")
     if(token==null || token.data.length ==0){
         location.href="/"
     }
@@ -146,14 +147,50 @@
         try { 
              
             $("#spName").html(customers.full_name)
+            var configs =  Api();
+            var configRequestsAxios = {
+                headers: {'Authorization': 'Bearer ' +token.data.token}
+            }
+
+
+            var data={
+                barcode:campaign.barcode
+            }
+
+            console.log(data)
+            return
+
+            axios.post("/"+configs.routes.printcupom,
+                      data,configRequestsAxios).then(function(response){
+                                    console.log(response)
+                                    
+                        }).then(data => {
+                                    console.log("1 ",data)
+
+                        }).catch(error => {
+                                        console.log("2 ",error.response.data.error)
+                                        
+                       });
+
+
+            console.log(configRequestsAxios)
+
+            
+
+
+
     
     
         }catch(e){
             console.log(e)
         }
+
+
+
+
         setTimeout(function(){
-              location.href="/"
-        },6000)
+            //  location.href="/"
+        },6*6000)
 
     
          

@@ -9,7 +9,9 @@ function Api(){
             "totemcustomers":'totem/customers',
             "totemcampaignscustomer":'totem/campaigns/customer',
             "publiczipcodes":"public/zipcodes",
-            "totemcustomersstore":"totem/customers/store"
+            "totemcustomersstore":"totem/customers/store",
+            "printcupom":"printcupom",
+            "totemstoresinfo":"totem/stores/info"
         
         }
         

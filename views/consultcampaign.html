@@ -129,15 +129,15 @@
   <!--/*Scripts QrCode*/ -->
 
    <script>
-       
-       $(document).ready(function(){
-
-        //
-                    var localStorger = new LocalStorger()
+        var localStorger = new LocalStorger()
                     var token=localStorger.getToObject("token")
                     if(token==null || token.data.length ==0){
                         location.href="/"
                     }
+       $(document).ready(function(){
+
+        //
+                   
                     navigator.getMedia = ( navigator.getUserMedia ||
                                 navigator.webkitGetUserMedia ||
                                 navigator.mozGetUserMedia ||

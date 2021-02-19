@@ -3,7 +3,7 @@ function readQRCode(){
 		setInterval(function(){
 			$('#scan').click()
 			console.log("read")
-		},100)
+		},300)
 	}catch(e){}
 }
 
