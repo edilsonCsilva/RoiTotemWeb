@@ -21,3 +21,4 @@
 21-imagens_de_load_cam_18022021_1245
 22-Limit_tempo_process_ecedido_18022021_1321
 23-criacao_java_prit_pdf_19022021_1012
+24-Ajuste_do_formato_do_pdf_gerado_noldejs_19022021_1012
