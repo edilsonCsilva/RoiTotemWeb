@@ -3,6 +3,10 @@ function Api(){
         "url":"https://api-roi.stilldistribuidora.com.br/",
         "username":"user2",
         "password":"user2",
+        "companyName":"Company Name",
+        "companysadress":"company's adress",
+        "cnpj":"29.021.114/0001-08",
+        "ie":"017.024.334.838",
         "routes":{
             "oauth":'totem/login',
             "totemcampaigns":'totem/campaigns',
