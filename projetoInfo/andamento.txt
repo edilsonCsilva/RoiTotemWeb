@@ -24,4 +24,9 @@
 24-Ajuste_do_formato_do_pdf_gerado_noldejs_19022021_1012
 25-criacao_das_configs_empresa_statics_JS_19022021_1023
 26-fucao_de_impresao_19022021_1119
+27-fucao_de_impresao_ajauste_no_java_22022021_0837
+28-mensagen_box_telefone_no_22022021_1026
+
+
+
 

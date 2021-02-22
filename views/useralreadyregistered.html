@@ -113,7 +113,22 @@
           
 
 
-
+            <div class="modal" tabindex="-1" role="dialog" id="msn">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Mensagem do Sistema.</h5>
+                    </div>
+                    <div class="modal-body" id="msn-modal-body">
+                       
+                    </div>
+                    <div class="modal-footer">
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
 
 
           
@@ -122,6 +137,7 @@
 
     </div>
 
+   
 
 
     <div id="containerstillkeyboard" class="still-keyboard-close"></div>
@@ -153,14 +169,21 @@
   
     $(document).ready(function(){
 
+        var modal =$("#msn")
+
         setTimeout(function(){
-              window.location.href="/"                
+             // window.location.href="/"                
            },2*10000) 
            
           $("#btn_process").on("click",function(){
             if(isClick){
                 return;
             }
+
+            $("#btn_process").html(`<div  class="theme-btn-round-heigth-title ">
+                                     <span class="colors-write">
+                                     <b>PROCESSANDO..</b>
+                                     </span></div>`)
 
             setTimeout(function(){
                             var configs =  Api();
@@ -188,6 +211,9 @@
                                 })
                                 .catch(error => {
                                         console.log("2 ",error.response.data.error)
+
+                                        $("#msn-modal-body").html("Telefone Não Localizado")
+                                        modal.show();
                                         setTimeout(function(){
                                                 location.href="/"
                                         },2000)
@@ -196,14 +222,16 @@
                             }).then(data => {
                                 console.log("1 ",data)
                                 setTimeout(function(){
-                                                location.href="/"
+                                               location.href="/"
                                         },2000)
                                  
                             })
                             .catch(error => {
-                                    console.log("2 ",error.response.data.error)
+                                modal.show();
+                                    console.log("2 ",error)
+                                    $("#msn-modal-body").html("Telefone Não Localizado")
                                     setTimeout(function(){
-                                                location.href="/"
+                                                 location.href="/"
                                         },2000)
                                     
                             });
