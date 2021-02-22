@@ -4,6 +4,9 @@ const bodyParser = require("body-parser")
 const PdfKit = require('pdfkit');
 const JsBarcode = require('jsbarcode');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+
+
  
 
 
@@ -14,7 +17,7 @@ const fs = require('fs');
 
 const swig  = require('swig');
 const  app = express()
-const pdf = new PdfKit();
+
  
 
 app.use(cors())
@@ -99,7 +102,7 @@ app.get("/newrecord", function(req,res){
      
 
 app.post("/printcupom",function(req,res){
-
+    var pdf = new PdfKit();
     try{
        var x=0,y=0
        const { createCanvas } = require("canvas");
@@ -111,7 +114,6 @@ app.post("/printcupom",function(req,res){
             "address" : dataBodyPosts.companysadress,
             "infoCnpj"   :dataBodyPosts.cnpj,
             "infoIe"   :dataBodyPosts.ie,
-    
         }
         JsBarcode(canvas, dataBodyPosts.barcode,x,100, {format: "ean13",height:10});
         pdf.fontSize('9')
@@ -148,28 +150,51 @@ app.post("/printcupom",function(req,res){
             .text('             Seja Bem Vindo :) \n',x,y+=80, {
                 align: 'left'
             })
-        pdf.pipe(fs.createWriteStream('output.pdf'))
+
+        var arquivos=uuidv4()+'.pdf'
+
+        pdf.pipe(fs.createWriteStream(arquivos))
         .on('finish', function () {
             console.log('PDF closed');
+
+                //java -jar output.pdf Samsung_M262x_282x_Series
+                var spawn = require('child_process').spawn;
+
+                //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
+
+              //  var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|CUSTOM VKP80 II']);
+
+                var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|Samsung_M262x_282x_Series']);
+                //noinspection JSUnresolvedFunction
+
+                //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',"output.pdf Samsung_M262x_282x_Series"]);
+              
+                //CUSTOM VKP80 II
+               // var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',"output.pdf CUSTOM VKP80 II"]);
+                prc.stdout.setEncoding('utf8');
+                prc.stdout.on('data', function (data) {
+                    var str = data.toString()
+                    var lines = str.split(/(\r?\n)/g);
+                    console.log(lines.join(""));
+                });
+                prc.on('close', function (code) {
+                    console.log('process exit code ' + code);
+                    fs.unlinkSync(arquivos);
+
+                });
+
+
             
         });
 
-        pdf.end();
-        var spawn = require('child_process').spawn;
-        var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
-        //noinspection JSUnresolvedFunction
-        prc.stdout.setEncoding('utf8');
-        prc.stdout.on('data', function (data) {
-            var str = data.toString()
-            var lines = str.split(/(\r?\n)/g);
-            console.log(lines.join(""));
-        });
-        prc.on('close', function (code) {
-            console.log('process exit code ' + code);
-        });
+      
+
+
+      
     }catch(e){
         console.log(e)
     }
+    pdf.end();
     res.send("")
 })
              
@@ -178,7 +203,7 @@ app.post("/printcupom",function(req,res){
 
 
 app.get("/p",function(req,res){
-
+    var pdf = new PdfKit();
     try{
         var data={
             "name":'Still Distribuidora . LTDA',
@@ -223,28 +248,49 @@ app.get("/p",function(req,res){
            
         pdf.pipe(fs.createWriteStream('output.pdf'))
         .on('finish', function () {
-            console.log('PDF closed');
-            
+            console.log('PDF closed s');
+
+
+            var spawn = require('child_process').spawn;
+            var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',"output.pdf Samsung_M262x_282x_Series"]);
+
+
+            //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
+        //  var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
+
+            //noinspection JSUnresolvedFunction
+            prc.stdout.setEncoding('utf8');
+            prc.stdout.on('data', function (data) {
+                var str = data.toString()
+                var lines = str.split(/(\r?\n)/g);
+                console.log(lines.join("")+" dsdasdas");
+            });
+
+            prc.on('close', function (code) {
+                console.log('process exit code sss' + code);
+            });
+
+
+         
         });
 
-        pdf.end();
-        var spawn = require('child_process').spawn;
-        var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
+        
+       
 
-        //noinspection JSUnresolvedFunction
-        prc.stdout.setEncoding('utf8');
-        prc.stdout.on('data', function (data) {
-            var str = data.toString()
-            var lines = str.split(/(\r?\n)/g);
-            console.log(lines.join(""));
-        });
+        
 
-        prc.on('close', function (code) {
-            console.log('process exit code ' + code);
-        });
+
+
+
+
+      
     }catch(e){
         console.log(e)
     }
+
+    pdf.end();
+
+
 
     res.send("")
 })

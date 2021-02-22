@@ -161,6 +161,7 @@
             }
             axios.post("/"+configs.routes.printcupom,
                       data,configRequestsAxios).then(function(response){
+                        
                         setTimeout(function(){
                             location.href="/"
                         },9*1000)
