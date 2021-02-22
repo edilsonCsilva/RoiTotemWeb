@@ -71,7 +71,7 @@
                                     <div class="row p-1">
 
                                         <div class="col">
-                                            <input type="text" stilltype="num" taborder="4"  id="input_zipcode" 
+                                            <input type="text" stilltype="num" taborder="4" onkeyup="somenteNumeros(this);"  id="input_zipcode" 
                                             class="onfocusClick onchange  form-control  theme-border-black theme-btn-round theme-input-round" 
                                             placeholder="Cep"> 
                                         </div>
@@ -258,6 +258,8 @@
 
 
         $("#btnSave").on("click",function(){
+
+            
             var data={
                 full_name:$("#input_name").val(),
                 phone:$("#input_phone").val(),
@@ -314,6 +316,17 @@
     });
     </script>
 
+
+    <script>
+        function somenteNumeros(num) {
+            var er = /[^0-9.]/;
+            er.lastIndex = 0;
+            var campo = num;
+            if (er.test(campo.value)) {
+            campo.value = "";
+            }
+        }
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
