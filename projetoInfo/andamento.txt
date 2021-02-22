@@ -25,7 +25,8 @@
 25-criacao_das_configs_empresa_statics_JS_19022021_1023
 26-fucao_de_impresao_19022021_1119
 27-fucao_de_impresao_ajauste_no_java_22022021_0837
-28-mensagen_box_telefone_no_22022021_1026
+28-mensagem_box_telefone_no_22022021_1026
+29-ajuste_de_acessos_as_paginas_22022021_1128
 
 
 

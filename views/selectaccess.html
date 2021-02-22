@@ -106,7 +106,9 @@
     <script>
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
-    if(token==null || token.data.length ==0){
+    var campaign = localStorger.getToObject("campaign")
+    
+    if(token==null || token.data.length ==0 || campaign==null){
         location.href="/"
     }
 

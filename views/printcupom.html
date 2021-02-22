@@ -139,7 +139,7 @@
     var token=localStorger.getToObject("token")
     var customers=localStorger.getToObject("customers")
     var campaign=localStorger.getToObject("campaign")
-    if(token==null || token.data.length ==0){
+    if(token==null || token.data.length ==0 || campaign==null ){
         location.href="/"
     }
     $(document).ready(function(){
