@@ -163,7 +163,7 @@
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var campaign = localStorger.getToObject("campaign")
-
+    var modal =$("#msn")
 
     var isClick=false;
     if(token==null || token.data.length ==0 || campaign==null){
@@ -171,9 +171,7 @@
     }
   
     $(document).ready(function(){
-
-        var modal =$("#msn")
-
+       
         setTimeout(function(){
              // window.location.href="/"                
            },2*10000) 

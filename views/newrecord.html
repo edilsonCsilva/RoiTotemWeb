@@ -143,6 +143,26 @@
 
 
 
+            <div class="modal" tabindex="-1" role="dialog" id="msn">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Mensagem do Sistema.</h5>
+                    </div>
+                    <div class="modal-body" id="msn-modal-body">
+                       
+                    </div>
+                    <div class="modal-footer">
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+
+
+
+
 
           
         </div>
@@ -177,6 +197,8 @@
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
     var campaign=localStorger.getToObject("campaign")
+    var modal =$("#msn")
+
     
     
     if(token==null || token.data.length ==0 || campaign==null){
@@ -191,6 +213,7 @@
            
 
 
+           
 
         $("#input_address").focus(function(){
             this.value=""
@@ -262,7 +285,9 @@
 
                                 })
                                 .catch(error => {
-                                        console.log("2 ",error.response.data.error)
+                                        console.log("2 ",error.response.data[0].message)
+                                        $("#msn-modal-body").html(error.response.data[0].message)
+                                        modal.show();
                                         setTimeout(function(){
                                                // location.href="/"
                                         },2000)
