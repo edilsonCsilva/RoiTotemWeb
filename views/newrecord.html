@@ -217,8 +217,8 @@
 
         $("#input_address").focus(function(){
             this.value=""
-            $("#input_zipcode").focus();
             $("#input_zipcode").click();
+            $("#input_zipcode").focus();
         })
 
         $("#input_zipcode").change(function(){
@@ -288,6 +288,19 @@
                                         console.log("2 ",error.response.data[0].message)
                                         $("#msn-modal-body").html(error.response.data[0].message)
                                         modal.show();
+
+
+                                        setTimeout(function(){
+                                            $("#btnSave").val("ENVIAR")
+                                            $("#msn-modal-body").html("")
+                                            $("#input_zipcode").val("")
+                                            $("#input_zipcode").click();
+                                            $("#input_zipcode").focus();
+                                            modal.hide();
+                                            
+                                        },3000)
+                                        
+                                        
                                         setTimeout(function(){
                                                // location.href="/"
                                         },2000)
