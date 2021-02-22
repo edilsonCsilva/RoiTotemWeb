@@ -63,7 +63,7 @@
                               <div class="row p-4 ">
                                 <div class="col-sm-6 ">
                                   <input type="text" stilltype="letters" taborder="3"  id="input_address" 
-                                  class=" onfocusClick form-control theme-border-black theme-btn-round theme-input-round"
+                                  class="  form-control theme-border-black theme-btn-round theme-input-round"
                                    placeholder="Endereço">
                                 </div>
                                 <div class="col-sm-6">
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="col">
                                             <input type="button" id="btnSave" class="form-control  theme-border-black
-                                             theme-btn-round theme-input-round theme-colors-btn-defalut-primary-bg " value="ENVIAR"> 
+                                             theme-btn-round theme-input-round  " value="ENVIAR"> 
                                         </div>
                                         
 
@@ -186,10 +186,17 @@
     $(document).ready(function(){
 
         setTimeout(function(){
-              window.location.href="/"                
+             /// window.location.href="/"                
            },6*10000) 
            
 
+
+
+        $("#input_address").focus(function(){
+            this.value=""
+            $("#input_zipcode").focus();
+            $("#input_zipcode").click();
+        })
 
         $("#input_zipcode").change(function(){
              $(this).keyup()
@@ -205,24 +212,27 @@
                                 'Authorization': 'Bearer ' +token.data.token
                                 }
                             }
-                var apiUrl=configs.url+configs.routes.publiczipcodes+"/search?postal_code="+ zipcode
-                axios.get(apiUrl,configRequestsAxios)
-                        .then(function(response){
-                            $("#__zipcodeid__").val("")
-                            $("#input_address").val("")
-                            try{
-                                if(response.data.zipcodes!=null){
-                                    var address =response.data.zipcodes[0].public_place
-                                    +", "+response.data.zipcodes[0].district
-                                    +", "+response.data.zipcodes[0].state
-                                    $("#__zipcodeid__").val(response.data.zipcodes[0].id)
-                                    $("#input_address").val(address)
-                                }
-                            }catch(e){}
-                            console.log(response)
-                        })
+                            var apiUrl=configs.url+configs.routes.publiczipcodes+"/search?postal_code="+ zipcode
+                            axios.get(apiUrl,configRequestsAxios)
+                                    .then(function(response){
+                                        $("#__zipcodeid__").val("")
+                                        $("#input_address").val("")
+                                        try{
+                                            if(response.data.zipcodes!=null){
+                                                var address =response.data.zipcodes[0].public_place
+                                                +", "+response.data.zipcodes[0].district
+                                                +", "+response.data.zipcodes[0].state
+                                                $("#__zipcodeid__").val(response.data.zipcodes[0].id)
+                                                $("#input_address").val(address)
+                                            }
+                                        }catch(e){}
+                                        console.log(response)
+                                    })
             }($("#input_zipcode")),1000)
         })
+
+
+
 
         $("#btnSave").on("click",function(){
             var data={
@@ -234,6 +244,7 @@
                 campaign_id:campaign.id
             }
 
+            $("#btnSave").val("PROCESSANDO...")
             try{
                 localStorger.insert("customers",JSON.stringify(data))
                 var configs =  Api();
@@ -244,7 +255,7 @@
                             }
                            axios.post(configs.url+configs.routes.totemcustomersstore, data,configRequestsAxios)
                                 .then(function(response){
-                                    alert("")
+                                     
                                     location.href="/printcupom"
                                 }).then(data => {
                                     console.log("1 ",data)
@@ -253,7 +264,7 @@
                                 .catch(error => {
                                         console.log("2 ",error.response.data.error)
                                         setTimeout(function(){
-                                                location.href="/"
+                                               // location.href="/"
                                         },2000)
                                 });
                 }catch(e){
