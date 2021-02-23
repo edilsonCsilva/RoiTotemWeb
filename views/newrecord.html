@@ -189,6 +189,7 @@
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
     <script src="/js/stillkeyboard.0.0.1.min.js" ></script>
+    <script src="/js/sweetalert2.js"></script>
 
 
     <script>
@@ -270,6 +271,35 @@
             }
 
             $("#btnSave").val("PROCESSANDO...")
+
+            let timerInterval
+                                    Swal.fire({
+                                    title: '',
+                                    html: 'Processando.',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                        timerInterval = setInterval(() => {
+                                        const content = Swal.getContent()
+                                        if (content) {
+                                            const b = content.querySelector('b')
+                                            if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                            }
+                                        }
+                                        }, 100)
+                                    },
+                                    willClose: () => {
+                                        clearInterval(timerInterval)
+                                    }
+                                    }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        console.log('I was closed by the timer')
+                                    }
+                                    })
+                                    
             try{
                 localStorger.insert("customers",JSON.stringify(data))
                 var configs =  Api();
@@ -288,24 +318,30 @@
                                 })
                                 .catch(error => {
                                         console.log("2 ",error.response.data[0].message)
-                                        $("#msn-modal-body").html(error.response.data[0].message)
-                                        modal.show();
-
-
+                                        
+                                        Swal.fire({
+                                          position: 'top-end',
+                                          icon: 'error',
+                                          title: 'Oops...',
+                                          text: error.response.data[0].message,
+                                          showConfirmButton: false,
+                                          timer: 3500,
+                                          willClose: () => {
+                                                  
+                                                  window.location.href="/"
+                                              }
+                                          })
                                         setTimeout(function(){
                                             $("#btnSave").val("ENVIAR")
                                             $("#msn-modal-body").html("")
                                             $("#input_zipcode").val("")
                                             $("#input_zipcode").click();
                                             $("#input_zipcode").focus();
-                                            modal.hide();
+                                           
                                             
                                         },3000)
                                         
-                                        
-                                        setTimeout(function(){
-                                               // location.href="/"
-                                        },2000)
+                                         
                                 });
                 }catch(e){
                     console.log(e)

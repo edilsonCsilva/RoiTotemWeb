@@ -136,19 +136,8 @@
         var localStorger = new LocalStorger()
                     var token=localStorger.getToObject("token")
                     if(token==null || token.data.length ==0){
-
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Erro ao Gerar o Token.!',
-                            showConfirmButton: false,
-                            timer: 3500,
-                            willClose: () => {
-                                window.location.href="/"
-                            }
-                        })
-
+                        window.location.href="/"
+                        
                          
                     }
        $(document).ready(function(){
