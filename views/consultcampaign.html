@@ -106,6 +106,8 @@
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
+    <script src="/js/sweetalert2.js"></script>
+
     <!--/*Scripts QrCode*/ -->
     <script src="/js/webcam.min.js"></script>
 	<script type="text/javascript" src="/js/qr/grid.js"></script>
@@ -125,13 +127,25 @@
 	<script type="text/javascript" src="/js/qr/findpat.js"></script>
 	<script type="text/javascript" src="/js/qr/alignpat.js"></script>
 	<script type="text/javascript" src="/js/qr/databr.js"></script>
-	<script src="/js/readQrCode.js"></script>
+    <script src="/js/readQrCode.js"></script>
+   
+
   <!--/*Scripts QrCode*/ -->
 
    <script>
         var localStorger = new LocalStorger()
                     var token=localStorger.getToObject("token")
                     if(token==null || token.data.length ==0){
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Erro ao Gerar o Token.!',
+                            showConfirmButton: false,
+                            timer: 3500
+                        })
+
                         location.href="/"
                     }
        $(document).ready(function(){
@@ -165,7 +179,7 @@
  
           setTimeout(function(){
               window.location.href="/"                
-           },2*10000)          
+           },6*10000)          
 
         //
        })

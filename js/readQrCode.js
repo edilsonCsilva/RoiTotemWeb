@@ -34,13 +34,28 @@ function readScanner(resumeScanner) {
 		var apiUrl=configs.url+configs.routes.totemcampaigns+"/search?hash="+resumeScanner[1]
 		axios.get(apiUrl,config)
         .then(function(response){
+			console.log(response)
+
+			 
             localStorger.insert("campaign",JSON.stringify(response.data.campaign))
             location.href="/selectaccess"
         }).then(data => {
                console.log("1 ",data)
         })
         .catch(error => {
-                console.log("2 ",error.response.data.error)
+				Swal.fire({
+					position: 'top-end',
+					icon: 'error',
+					title: 'Oops... Campanha Não Localizada.',
+					text: error.response.data.error,
+					showConfirmButton: false,
+					timer: 3500
+				})
+
+				setTimeout(function(){
+					window.location.href="/"                
+				 },2*10000) 
+
 		});
 		
 
