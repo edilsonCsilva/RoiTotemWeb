@@ -134,6 +134,8 @@
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
     <script src="/js/axios.min.js" ></script>
+    <script src="/js/sweetalert2.js"></script>
+
     <script>
     var localStorger = new LocalStorger()
     var token=localStorger.getToObject("token")
@@ -161,8 +163,19 @@
             }
             axios.post("/"+configs.routes.printcupom,
                       data,configRequestsAxios).then(function(response){
+
+                        Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Imprimindo...',
+                                showConfirmButton: false,
+                                timer: 3500
+                            })
+                            
                         
                         setTimeout(function(){
+                         
+                            
                             location.href="/"
                         },9*1000)
                       
@@ -171,6 +184,15 @@
            console.log(configRequestsAxios)
         }catch(e){
             console.log(e)
+            Swal.fire({
+                   position: 'top-end',
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Erro ao Gerar na Impressão.!',
+                   showConfirmButton: false,
+                   timer: 3500
+            })
+
         }
 
 
