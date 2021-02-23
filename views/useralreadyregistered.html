@@ -219,11 +219,12 @@
                                         title: 'Oops...',
                                         text: 'Telefone Não Localizado.!',
                                         showConfirmButton: false,
-                                        timer: 3500
+                                        timer: 3500,
+                                        willClose: () => {
+                                                window.location.href="/"
+                                            }
                                         })
-                                        setTimeout(function(){
-                                                        location.href="/"
-                                        },2000)
+                                        
                                 });
                                 isClick=true;
                             }).then(data => {
@@ -240,7 +241,10 @@
                                     title: 'Oops...',
                                     text: 'Telefone Não Localizado.!',
                                     showConfirmButton: false,
-                                    timer: 3500
+                                    timer: 3500,
+                                    willClose: () => {
+                                                window.location.href="/"
+                                    }
                                 })
 
                                 setTimeout(function(){

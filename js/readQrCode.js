@@ -3,7 +3,7 @@ function readQRCode(){
 		setInterval(function(){
 			$('#scan').click()
 			console.log("read")
-		},300)
+		},1000)
 	}catch(e){}
 }
 
@@ -35,8 +35,6 @@ function readScanner(resumeScanner) {
 		axios.get(apiUrl,config)
         .then(function(response){
 			console.log(response)
-
-			 
             localStorger.insert("campaign",JSON.stringify(response.data.campaign))
             location.href="/selectaccess"
         }).then(data => {
@@ -46,19 +44,15 @@ function readScanner(resumeScanner) {
 				Swal.fire({
 					position: 'top-end',
 					icon: 'error',
-					title: 'Oops... Campanha Não Localizada.',
-					text: error.response.data.error,
+					title: 'Oops...',
+					text: "Campanha Não Localizada.",
 					showConfirmButton: false,
-					timer: 3500
+					timer: 2000,
+					willClose: () => {
+						window.location.href="/"
+					}
 				})
-
-				setTimeout(function(){
-					window.location.href="/"                
-				 },2*10000) 
-
 		});
-		
-
 		//alert(data)
 	} 
 }
