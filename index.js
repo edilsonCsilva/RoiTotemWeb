@@ -59,8 +59,9 @@ app.get("/img/:img", function(req,res){
 })
 
 
-app.get("/", function(req,res){
-    res.send(swig.renderFile(__dirname+'/views/index.html', {
+ 
+  app.get("/", function(req,res){
+    res.send(swig.renderFile(__dirname+'/views/indexx.html', {
         title: title
     }))
   })
