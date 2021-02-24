@@ -160,11 +160,17 @@ app.post("/printcupom",function(req,res){
                 //java -jar output.pdf Samsung_M262x_282x_Series
                 var spawn = require('child_process').spawn;
 
+                
+
+                var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|Epson_Stylus_TX230']);
+
+
+
                 //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
 
               //  var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|CUSTOM VKP80 II']);
 
-                var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|Samsung_M262x_282x_Series']);
+              //  var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',arquivos+'|Samsung_M262x_282x_Series']);
                 //noinspection JSUnresolvedFunction
 
                 //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar',"output.pdf Samsung_M262x_282x_Series"]);
