@@ -136,16 +136,16 @@ function _setScroll(x,y){
 
 
 function __initPadNum(){
-    keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad"))
-    keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad"))
+    keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad num-pad-font"))
+    keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad num-pad-font"))
     keyboardNum.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
     keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
     keyboardNum.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning"))
@@ -161,10 +161,10 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
-                keyboardLetters.push(new ActionComponet(32,"______","flex-item onclickAction num-pad "+spaceClass))
+                keyboardLetters.push(new ActionComponet(32,"space","flex-item onclickAction num-pad  "+spaceClass))
 
             }else{
-                keyboardLetters.push(new ActionComponet(__ascii(letters[poss]),letters[poss],"flex-item onclickAction num-pad "+spaceClass))
+                keyboardLetters.push(new ActionComponet(__ascii(letters[poss]),letters[poss],"flex-item onclickAction num-pad num-pad-font"+spaceClass))
             }
         }
         keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-home\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
@@ -174,10 +174,10 @@ function __initLetters(){
             var spaceClass=""
             if(letters[poss]==" "){
                 spaceClass="space"
-                keyboardLetters.push(new ActionComponet(32,"______","flex-item onclickAction num-pad "+spaceClass))
+                keyboardLetters.push(new ActionComponet(32,"space","flex-item onclickAction num-pad num-pad-font "+spaceClass))
 
             }else{
-                keyboardLetters.push(new ActionComponet(__ascii(char),char,"flex-item onclickAction num-pad "+spaceClass))
+                keyboardLetters.push(new ActionComponet(__ascii(char),char,"flex-item onclickAction num-pad num-pad-font "+spaceClass))
 
             }
 

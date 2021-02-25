@@ -110,6 +110,10 @@
 
     <!--/*Scripts QrCode*/ -->
     <script src="/js/webcam.min.js"></script>
+     
+
+
+ 
 	<script type="text/javascript" src="/js/qr/grid.js"></script>
 	<script type="text/javascript" src="/js/qr/version.js"></script>
 	<script type="text/javascript" src="/js/qr/detector.js"></script>
@@ -127,74 +131,12 @@
 	<script type="text/javascript" src="/js/qr/findpat.js"></script>
 	<script type="text/javascript" src="/js/qr/alignpat.js"></script>
 	<script type="text/javascript" src="/js/qr/databr.js"></script>
-    <script src="/js/readQrCode.js"></script>
+    <!--<script src="/js/readQrCode.js"></script>-->
+    <script src="/js/consultCompaing.0.0.min.js"></script>
+
+
    
 
-  <!--/*Scripts QrCode*/ -->
-
-   <script>
-        var localStorger = new LocalStorger()
-                    var token=localStorger.getToObject("token")
-                    if(token==null || token.data.length ==0){
-                        window.location.href="/"
-                        
-                         
-                    }
-       $(document).ready(function(){
-
-        //
-                   
-                    navigator.getMedia = ( navigator.getUserMedia ||
-                                navigator.webkitGetUserMedia ||
-                                navigator.mozGetUserMedia ||
-                                navigator.msGetUserMedia);
-
-                    navigator.getMedia (
-
-                    // permissoes
-                    {
-                        video: true,
-                        audio: true
-                    },
-                    // callbackSucesso
-                    function(localMediaStream) {
-                        
-                    },
-
-                    // callbackErro
-                    function(err) {
-                        console.log("O seguinte erro ocorreu: " + err);
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: "O seguinte erro ocorreu: " + err,
-                            showConfirmButton: false,
-                            timer: 3500,
-                            willClose: () => {
-                                window.location.href="/"
-                            }
-                        })
-
-
-                        
-                    }
-
-                    );
-            
- 
-          setTimeout(function(){
-              window.location.href="/"                
-           },6*10000)          
-
-        //
-       })
-       
-        
-
-
-
-   </script>
 
     
  

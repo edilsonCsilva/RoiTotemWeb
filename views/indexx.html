@@ -79,48 +79,10 @@
     <script src="/js/configs.js" ></script>
     <script src="/js/system.js" ></script>
     <script src="/js/localStorger.js" ></script>
-    
-
     <script src="/js/axios.min.js" ></script>
-
     <script src="/js/sweetalert2.js"></script>
-
-
+    <script src="/js/index.0.0.min.js"></script>
     
-
-    <script>
-
-    var localStorger = new LocalStorger()
-    localStorger.cls()
-    
-    $(document).ready(function(){
-     
-        var configs =  Api();
-        console.log(configs.routes)
-        axios.post(configs.url+configs.routes.oauth, { username: configs.username, password: configs.password })
-        .then(function(response){
-            localStorger.insert("token",JSON.stringify(response))
-            console.log(response)
-        }).then(data => {
-               console.log("1 ",data)
-        })
-        .catch(error => {
-                console.log("2 ",error.response.data.error)
-        });
-
-
-        $("#OnClickNext").on('click', function(){
-            location.href="/start"
-            return false;
-        })
-     
-
-
-    });
-
-
-
-    </script>
 
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->

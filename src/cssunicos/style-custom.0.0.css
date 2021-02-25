@@ -143,5 +143,31 @@ theme-btn-round-heigth-2{
 }
 
 
+.box-process{
+    position:absolute;
+    z-index: 2000;
+    display: flex;
+    background-color:aliceblue;
+    display: block;
+    width:20%;
+    height:16.04%;
+    text-align:center;
+    color:red;
+    border:1px solid #000;
+    flex-wrap:wrap;
+    
 
+
+}
+
+.box-process .item{
+    position:relative;
+    width:100%;
+    height:100%;
+    flex-basis:   auto;
+    justify-content:center;
+    align-items:baseline;
+    margin: auto; 
+    padding: 15%;
+}
 
