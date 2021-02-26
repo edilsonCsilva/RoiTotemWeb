@@ -6,7 +6,7 @@ var containerstillkeyboardSize=0
 var keyboardNum=[]
 var keyboardLetters=[]
 var tabComponent =[];
-var capLook=false;
+var capLook=true;
 
 var enter=-400
 var stop =-401
@@ -136,25 +136,25 @@ function _setScroll(x,y){
 
 
 function __initPadNum(){
-    keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad num-pad-font"))
-    keyboardNum.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
-    keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
-    keyboardNum.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning"))
-    keyboardNum.push(new ActionComponet(enter,"Próximo","flex-item onclickAction num-pad btn-danger"))
+    keyboardNum.push(new ActionComponet(1,"1","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(2,"2","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(3,"3","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(4,"4","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(5,"5","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(6,"6","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(7,"7","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(8,"8","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(9,"9","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(0,"0","flex-item onclickAction num-pad  num-pad-number num-pad-font"))
+    keyboardNum.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward fa-1x\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger num-pad-number num-pad-auto"))
+    keyboardNum.push(new ActionComponet(turnBack,"Anterior","flex-item onclickAction num-pad btn-info num-pad-auto num-pad-number"))
+    keyboardNum.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning num-pad-auto num-pad-number"))
+    keyboardNum.push(new ActionComponet(enter,"Próximo","flex-item onclickAction num-pad btn-next num-pad-auto num-pad-number"))
 }
 
 
 function __initLetters(){
-    var letters=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",","," ","."]
+    var letters=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ","."]
     keyboardLetters=[]
     if(capLook){
         for(poss=0;poss < letters.length;poss++){
@@ -167,7 +167,7 @@ function __initLetters(){
                 keyboardLetters.push(new ActionComponet(__ascii(letters[poss]),letters[poss],"flex-item onclickAction num-pad num-pad-font"+spaceClass))
             }
         }
-        keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-home\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
+       // keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-home\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
     }else{
         for(poss=0;poss < letters.length;poss++){
             var char =letters[poss].toLowerCase()
@@ -182,10 +182,10 @@ function __initLetters(){
             }
 
         }
-        keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
+       // keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
   
     }
-    keyboardLetters.push(new ActionComponet(turnBack,"Return","flex-item onclickAction num-pad btn-info"))
+    keyboardLetters.push(new ActionComponet(turnBack,"Anterior","flex-item onclickAction num-pad btn-info"))
     keyboardLetters.push(new ActionComponet(deletedChart,"<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-danger"))
     keyboardLetters.push(new ActionComponet(stop,"Fechar","flex-item onclickAction num-pad btn-warning"))
     keyboardLetters.push(new ActionComponet(enter,"Próximo","flex-item onclickAction num-pad btn-danger"))
@@ -264,7 +264,8 @@ function __openKeyBoard(){
                 var positionYScroll = parseInt($("body").height())
                 var newPositionBodyHeight =positionYScroll+containerstillkeyboardSize
                 $("body").height(newPositionBodyHeight)
-                _setScroll(0,-1*activeComponent.eixoPositions.y )
+                _setScroll(0,activeComponent.eixoPositions.y-(containerstillkeyboardSize/2) )
+                console.log("#3 ",containerstillkeyboardSize,positionYScroll,newPositionBodyHeight,activeComponent.eixoPositions.y)
                
             }
         );
@@ -294,10 +295,13 @@ function __closeKeyBoard(){
 function __kybNum(){
     containerstillkeyboard.innerHTML=""
      var numPad="<div class=\"item-container flex-container\" >"
-             for(poss=0; poss < keyboardNum.length;poss++){  
-                        numPad+="<button class=\""+keyboardNum[poss]._class+"\" stillValue=\""+keyboardNum[poss]._id+"\">"+keyboardNum[poss]._label+"</button>"
-             }
+            numPad+="<div class=\"item-format\" >"
+                for(poss=0; poss < keyboardNum.length;poss++){  
+                            numPad+="<button class=\""+keyboardNum[poss]._class+"\" stillValue=\""+keyboardNum[poss]._id+"\">"+keyboardNum[poss]._label+"</button>"
+                }
+            numPad+="</div>";
         numPad+="</div>";
+        
        containerstillkeyboard.innerHTML =numPad
      
        __setOnActionClicks()
@@ -372,6 +376,13 @@ function __events(events,activatedComponent){
         }
         return false;
     }else if(eventsClick==32){
+        var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
+        activeComponent.self.value=newValues
+        if($(activeComponent.self).hasClass("onchange")){
+            $(activeComponent.self).change()
+        }
+        return false;
+    }else if(eventsClick==46){
         var newValues=(activeComponent.self.value+""+String.fromCharCode(eventsClick))
         activeComponent.self.value=newValues
         if($(activeComponent.self).hasClass("onchange")){

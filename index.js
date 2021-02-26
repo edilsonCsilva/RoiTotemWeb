@@ -5,21 +5,8 @@ const PdfKit = require('pdfkit');
 const JsBarcode = require('jsbarcode');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-
-
-
-
-
-
-
-
-
-
 const swig = require('swig');
 const app = express()
-
-
-
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -104,6 +91,10 @@ app.get("/newrecord", function (req, res) {
 
 app.post("/printcupom", function (req, res) {
     var pdf = new PdfKit();
+    var arquivos = uuidv4() + '.pdf'
+    var print_disp = ["Epson_Stylus_TX230", "CUSTOM VKP80 II", "Samsung_M262x_282x_Series"]
+    var defaultprint =0
+
     try {
         var x = 0, y = 0
         const { createCanvas } = require("canvas");
@@ -152,9 +143,7 @@ app.post("/printcupom", function (req, res) {
                 align: 'left'
             })
 
-        var arquivos = uuidv4() + '.pdf'
-        var print_disp = ["Epson_Stylus_TX230", "CUSTOM VKP80 II", "Samsung_M262x_282x_Series"]
-        var defaultprint = 1
+       
         pdf.pipe(fs.createWriteStream(arquivos))
             .on('finish', function () {
                 console.log('PDF closed');
