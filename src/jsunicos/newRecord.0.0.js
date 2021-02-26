@@ -11,12 +11,12 @@ var waitingTime= new Date()
 if (token == null || token.data.length == 0 || campaign == null) {
     location.href = "/"
 }
-
+ 
 
 $(document).ready(function () {
     
     setTimeout(function () {
-        // window.location.href="/"                
+         window.location.href="/"                
     }, 60 * 1000)
 
 

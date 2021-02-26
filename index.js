@@ -93,7 +93,7 @@ app.post("/printcupom", function (req, res) {
     var pdf = new PdfKit();
     var arquivos = uuidv4() + '.pdf'
     var print_disp = ["Epson_Stylus_TX230", "CUSTOM VKP80 II", "Samsung_M262x_282x_Series"]
-    var defaultprint =0
+    var defaultprint = 0
 
     try {
         var x = 0, y = 0
@@ -143,7 +143,7 @@ app.post("/printcupom", function (req, res) {
                 align: 'left'
             })
 
-       
+
         pdf.pipe(fs.createWriteStream(arquivos))
             .on('finish', function () {
                 console.log('PDF closed');
@@ -170,117 +170,6 @@ app.post("/printcupom", function (req, res) {
     pdf.end();
     res.send("")
 })
-
-
-
-
-
-app.get("/p", function (req, res) {
-    var pdf = new PdfKit();
-    try {
-        var data = {
-            "name": 'Still Distribuidora . LTDA',
-            "address": "Avenida Alto Sucuriu , 32 , Jd.Antarttica ,SP",
-            "infoCnpj": "CNPJ:00.090.476/0001-60 ",
-            "infoIe": "IE:825.872.620.713",
-
-        }
-
-        var x = 0, y = 0
-        const { createCanvas } = require("canvas");
-        const canvas = createCanvas();
-        JsBarcode(canvas, "1234567890128", x, 100, { format: "ean13", height: 10 });
-        pdf.fontSize('9')
-        x = 15
-        pdf.text(data.name, x, y += 15)
-        pdf.text(data.address, x, y += 15)
-        pdf.text(data.infoCnpj, x, y += 15)
-        pdf.text(data.infoIe, x, y += 15)
-        pdf.text('****************************************************************', x, y += 30)
-        pdf.text('               Cupom Fiscal Eletronico-SAT              ', x, y += 20)
-        pdf.text('****************************************************************', x, y += 25)
-
-        pdf
-            .fontSize('18')
-            .fillColor('#0000')
-            .text('lembre-se:', x, y += 25, {
-                align: 'left'
-            })
-
-        pdf
-            .fontSize('10')
-            .fillColor('#000')
-            .text('cada cupom só pode ser usado uma \núnica vez.', x, y += 25, {
-                align: 'left'
-            })
-
-        pdf.fillColor('#000')
-        pdf.text('*********************************************************** ', x, y += 25)
-        // Adiciona uma imagem na posição X: 300 e Y: 300
-        pdf.image(canvas.toDataURL('image/png'), x + 35, y += 10, { scale: 0.45 })
-
-        pdf.pipe(fs.createWriteStream('output.pdf'))
-            .on('finish', function () {
-                console.log('PDF closed s');
-
-
-                var spawn = require('child_process').spawn;
-                var prc = spawn('java', ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar', "output.pdf Samsung_M262x_282x_Series"]);
-
-
-                //var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
-                //  var prc = spawn('java',  ['-jar', '-Xmx512M', '-Dfile.encoding=utf8', 'PdfPrintCmd.jar']);
-
-                //noinspection JSUnresolvedFunction
-                prc.stdout.setEncoding('utf8');
-                prc.stdout.on('data', function (data) {
-                    var str = data.toString()
-                    var lines = str.split(/(\r?\n)/g);
-                    console.log(lines.join("") + " dsdasdas");
-                });
-
-                prc.on('close', function (code) {
-                    console.log('process exit code sss' + code);
-                });
-
-
-
-            });
-
-
-
-
-
-
-
-
-
-
-
-    } catch (e) {
-        console.log(e)
-    }
-
-    pdf.end();
-
-
-
-    res.send("")
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
