@@ -136,13 +136,14 @@ function __initPadNum() {
 }
 
 function __initLetters() {
-    var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ", "."]
+    
+    var letters = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Ç","Z","X","C","V","B","N","M", "."]
     keyboardLetters = []
     if (capLook) {
         for (poss = 0; poss < letters.length; poss++) {
             var spaceClass = ""
             if (letters[poss] == " ") {
-                spaceClass = "space"
+                spaceClass = "space "
                 keyboardLetters.push(new ActionComponet(32, "      ", "flex-item onclickAction num-pad  " + spaceClass))
 
             } else {
@@ -153,7 +154,7 @@ function __initLetters() {
     } else {
         for (poss = 0; poss < letters.length; poss++) {
             var char = letters[poss].toLowerCase()
-            var spaceClass = ""
+           
             if (letters[poss] == " ") {
                 spaceClass = "space"
                 keyboardLetters.push(new ActionComponet(32, "      ", "flex-item onclickAction num-pad btn-keys  " + spaceClass))
@@ -167,9 +168,11 @@ function __initLetters() {
         // keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
 
     }
+    spaceClass = "space spacer-50 "
     keyboardLetters.push(new ActionComponet(deletedChart, "<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>", "flex-item onclickAction num-pad  num-close-keys"))
     keyboardLetters.push(new ActionComponet(stop, "Fechar", "flex-item onclickAction num-pad num-close-keys"))
     keyboardLetters.push(new ActionComponet(turnBack, "Anterior", "flex-item onclickAction num-pad btn-info num-back-keys"))
+    keyboardLetters.push(new ActionComponet(32, "       ", "flex-item onclickAction num-pad  " + spaceClass))
     keyboardLetters.push(new ActionComponet(enter, "Próximo", "flex-item onclickAction num-pad num-next-keys"))
 
 
@@ -296,9 +299,11 @@ function __kybNum() {
 function __kybLetters() {
     containerstillkeyboard.innerHTML = ""
     var numPad = "<div class=\"item-container flex-container\" >"
+    numPad+="<center><div class=\"lettes\">"
     for (poss = 0; poss < keyboardLetters.length; poss++) {
         numPad += "<button class=\"" + keyboardLetters[poss]._class + "\" stillValue=\"" + keyboardLetters[poss]._id + "\">" + keyboardLetters[poss]._label + "</button>"
     }
+    numPad += "</div>";
     numPad += "</div>";
     containerstillkeyboard.innerHTML = numPad
 
@@ -348,7 +353,7 @@ function __events(events, activatedComponent) {
         }
 
         return false;
-    } else if (eventsClick >= 97 && eventsClick <= 122) {
+    } else if (eventsClick >= 97 && eventsClick <= 122 ) {
 
         var newValues = (activeComponent.self.value + "" + String.fromCharCode(eventsClick))
         activeComponent.self.value = newValues
@@ -364,6 +369,16 @@ function __events(events, activatedComponent) {
             $(activeComponent.self).change()
         }
         return false;
+    }else if(eventsClick==128){
+      
+        var newValues = (activeComponent.self.value + "" +  __ascii(eventsClick,false))
+        activeComponent.self.value = newValues
+        if ($(activeComponent.self).hasClass("onchange")) {
+            $(activeComponent.self).change()
+        }
+
+        return false;
+
     } else if (eventsClick == 32) {
         var newValues = (activeComponent.self.value + "" + String.fromCharCode(eventsClick))
         activeComponent.self.value = newValues
@@ -414,6 +429,7 @@ function __events(events, activatedComponent) {
             }
         }
     } else {
+        console.log(__ascii(eventsClick,false))
         alert("Evento Não Loacalizado : [" + eventsClick + "]")
     }
 

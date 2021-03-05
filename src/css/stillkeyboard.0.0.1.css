@@ -6,7 +6,7 @@
 
 
 .flex-container{
-     
+     text-align: center;
   /* border: 1px solid #000; */
    /*background-color: #fff;*/
 
@@ -23,11 +23,38 @@
    align-items: center;
    align-self: start;
 }
+
+.lettes{
+  
+  
+   width: 60%;
+   display: flex; 
+   display: -webkit-box;
+   display: -moz-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   padding:6px;
+   align-items: center;
+   align-self: start;
+ /* background-color:red*/
+}
+
+
+
+
+
 .btn-next{
   background-color: rgb(75, 241, 33);
 }
 
 
+
+.spacer-50{
+  width:50%;
+}
 
  button{
     background-color:#fff;
@@ -76,6 +103,8 @@
 
 .num-pad{
 
+  
+
     text-align: center;
     position:relative;
     height: 84px;
@@ -91,6 +120,8 @@
    background-color:rgb(52, 65, 250);
    
 }
+
+
 
 
 
@@ -134,7 +165,7 @@
  .space{
     
   height:84px;
-  width:350px;
+  width:360px;
 
   background-color:#c4c4c4;
 
