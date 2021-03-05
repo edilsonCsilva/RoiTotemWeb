@@ -16,8 +16,8 @@ if (token == null || token.data.length == 0 || campaign == null) {
 $(document).ready(function () {
     
     setTimeout(function () {
-         window.location.href="/"                
-    }, 60 * 1000)
+        // window.location.href="/"                
+    }, 120 * 1000)
 
 
     $("#input_address").focus(function () {

@@ -10,7 +10,7 @@ $(document).ready(function () {
     setTimeout(function () {
  
         window.location.href = "/"
-    }, 60 * 1000)
+    }, 120 * 1000)
     $("#btn_process").on("click", function () {
         if (isClick) {
             return;
