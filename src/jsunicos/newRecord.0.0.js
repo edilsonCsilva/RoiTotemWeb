@@ -62,8 +62,8 @@ $(document).ready(function () {
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-           // window.location.href = "/"
-           // return
+           window.location.href = "/"
+            return
         }
         console.log("click",timesClicksPagers)
 
@@ -167,6 +167,8 @@ $(document).ready(function () {
                     'Authorization': 'Bearer ' + token.data.token
                 }
             }
+
+            
             axios.post(configs.url + configs.routes.totemcustomersstore, data, configRequestsAxios)
                 .then(function (response) {
 
