@@ -111,6 +111,8 @@ $(document).ready(function () {
 		// callbackErro
 		function (err) {
 			console.log("O seguinte erro ocorreu: " + err);
+
+			/*
 			Swal.fire({
 				position: 'top-end',
 				icon: 'error',
@@ -122,6 +124,9 @@ $(document).ready(function () {
 					window.location.href = "/"
 				}
 			})
+
+			*/
+			
 
 
 

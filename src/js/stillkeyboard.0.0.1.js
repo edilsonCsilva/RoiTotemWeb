@@ -344,10 +344,14 @@ function __events(events, activatedComponent) {
         
 
         var newValues = (activeComponent.self.value + "" + eventsClick)
-        if(newValues.length > 14){
-            return false;
+        if($("#"+activeComponent.self.id).hasClass('mask-phone')){
+            if(newValues.length > 14){
+                return false;
+            }
+            activeComponent.self.value = mTel(newValues)
+        }else{
+            activeComponent.self.value = newValues
         }
-        activeComponent.self.value = mTel(newValues)
         if ($(activeComponent.self).hasClass("onchange")) {
             $(activeComponent.self).change()
         }
