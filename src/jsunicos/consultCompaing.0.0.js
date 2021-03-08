@@ -2,13 +2,48 @@
 var localStorger = new LocalStorger()
 var token = localStorger.getToObject("token")
 var scanner=null
+
+
+
+var timesClicksPagers=80
+var timesContexSetInteval=null
+var limitTime=100
+
+
+
+
+
  
 if (token == null || token.data.length == 0) {
 	window.location.href = "/"
-
-
 }
+
+
 $(document).ready(function () {
+
+	 
+	timesContexSetInteval=setInterval(function () {
+        timesClicksPagers--
+        if(timesClicksPagers==0){
+            window.location.href = "/"
+            return
+        }
+        console.log("click",timesClicksPagers)
+
+    },6*100)
+
+	$("body").mousemove(function(){
+		console.log("add ")
+		if(timesClicksPagers < limitTime){
+			timesClicksPagers++
+		}
+		
+	});
+	$(window).bind('beforeunload', function(){
+		clearInterval(timesContexSetInteval)
+	});
+
+
 
 	function readQRCode() {
 		try {
@@ -137,10 +172,11 @@ $(document).ready(function () {
 
 	setTimeout(function () {
 		window.location.href = "/"
-	}, 6 * 10000)
+	}, 1.5 * 60000)
 
 	//
 })
+
 
 
 function readQRCode() {
@@ -201,7 +237,6 @@ function readScanner(resumeScanner) {
 		//alert(data)
 	}
 }
-
 
 
 

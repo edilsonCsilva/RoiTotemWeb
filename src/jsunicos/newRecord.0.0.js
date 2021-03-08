@@ -6,6 +6,11 @@ var modal = $("#msn")
 var boxProcess = $("#box-process")
 var waitingTime= new Date()
 
+var timesClicksPagers=80
+var timesContexSetInteval=null
+var limitTime=100
+
+
 
 
 if (token == null || token.data.length == 0 || campaign == null) {
@@ -14,10 +19,31 @@ if (token == null || token.data.length == 0 || campaign == null) {
  
 
 $(document).ready(function () {
-    
-    setTimeout(function () {
-         window.location.href="/"                
-    }, 120 * 1000)
+   
+
+
+
+    timesContexSetInteval=setInterval(function () {
+        timesClicksPagers--
+        if(timesClicksPagers==0){
+            window.location.href = "/"
+            return
+        }
+        console.log("click",timesClicksPagers)
+
+    },6*100)
+
+    $("body").mousemove(function(){
+        console.log("add ")
+        if(timesClicksPagers < limitTime){
+            timesClicksPagers++
+        }
+        
+    });
+    $(window).bind('beforeunload', function(){
+        clearInterval(timesContexSetInteval)
+    });
+
 
 
     $("#input_address").focus(function () {
