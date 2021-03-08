@@ -1,9 +1,10 @@
-
+var bodyDocumentHeight=document.body.clientHeight
 var localStorger = new LocalStorger()
 var token = localStorger.getToObject("token")
 var campaign = localStorger.getToObject("campaign")
 var modal = $("#msn")
 var boxProcess = $("#box-process")
+var containerTerms=""
 var waitingTime= new Date()
 
 var timesClicksPagers=80
@@ -19,15 +20,50 @@ if (token == null || token.data.length == 0 || campaign == null) {
  
 
 $(document).ready(function () {
-   
+    containerTerms=$("#containerTerms")
+
+
+
+    $(".onclickTerms").on("click",function(){
+        var configs = Api();
+
+        try{
+
+           
+            var config = {
+				headers: {
+					'Authorization': 'Bearer ' + token.data.token
+				}
+			}
+			var apiUrl = configs.url + configs.routes.totemcorporationscontract 
+			axios.get(apiUrl, config)
+				.then(function (response) {
+                    console.log(response)
+                    openTerms(response.data.contract)
+				 
+				}).then(data => {
+					console.log("1 ", data)
+				}).catch(error => {
+
+                })
+            
+
+
+
+
+
+
+           
+        }catch(e){}
+    })
 
 
 
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-            window.location.href = "/"
-            return
+           // window.location.href = "/"
+           // return
         }
         console.log("click",timesClicksPagers)
 
@@ -47,9 +83,9 @@ $(document).ready(function () {
 
 
     $("#input_address").focus(function () {
-        this.value = ""
-        $("#input_zipcode").click();
-        $("#input_zipcode").focus();
+        //this.value = ""
+       // $("#input_zipcode").click();
+      //  $("#input_zipcode").focus();
         
     })
     $("#input_zipcode").change(function () {
@@ -174,4 +210,57 @@ function getBoxProcess(boxUuid, visible) {
     else
         boxUuid.html("")
 }
+
+
+function openTerms(terms){
+  var newHeight=bodyDocumentHeight-250;
+  
+
+  try{
+
+
+
+            var template=`<div class="modal" tabindex="-1" id="terms">
+                            <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">TERMOS DE SERVIÇO ROI </h5>
+                                <button type="button" class="btn-close onClickClose"   data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <div class="modal-body">
+                                  <div id="divContent" class=' ' style="height:`+newHeight+`px; overflow:auto; ">
+                                  :conteudo
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary onClickClose" data-bs-dismiss="modal">Close</button>
+                               
+                                </div>
+                            </div>
+                            </div>
+                        </div>`
+
+
+
+            template=template.replace(":conteudo",terms)          
+            containerTerms.html(template).show()
+            $("#terms").slideDown(2000).show()
+            $(".onClickClose").on("click", function(){
+                $("#terms").slideDown(2000) 
+                $("#terms").slideUp(1000,function(){
+                     containerTerms.html("").hide()
+                    }
+                );
+            })
+
+  }catch(e){
+      console.log(e)
+  }
+
+
+}
+
+
+
+
 

@@ -13,6 +13,7 @@
     <link href="/css/stillkeyboard.0.0.1.min.css" rel="stylesheet" >
     <link rel="stylesheet" href="/fontawesome/css/font-awesome.min.css">
 
+   
     <title>{{title}}</title>
   </head>
   <body class="theme-roi-base">
@@ -65,8 +66,8 @@
                               
                               <div class="row p-4 ">
                                 <div class="col-sm-6 ">
-                                  <input type="text"  id="input_address" 
-                                  class="  form-control theme-border-black theme-btn-round theme-input-round"
+                                  <input type="text"   id="input_address" taborder="3"  stilltype="letters"
+                                  class=" onfocusClick form-control theme-border-black theme-btn-round theme-input-round"
                                    placeholder="Endereço">
                                 </div>
                                 <div class="col-sm-6">
@@ -113,8 +114,8 @@
                                           id="gridRadios2" value="option2">
                                           <label class="form-check-label" for="gridRadios2">
                                             Li e aceito os 
-                                            <a href="javascript:void(0)">Termos de Uso</a> e as
-                                            <a href="javascript:void(0)">Políticas de Privacidade</a> 
+                                            <a href="javascript:void(0)" class="onclickTerms">Termos de Uso</a> e as
+                                            <a href="javascript:void(0)" class="onclickTerms">Políticas de Privacidade</a> 
                                           </label>
                                    
                                       </div>
@@ -164,6 +165,25 @@
         
 
 
+              <div class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
 
 
 
@@ -179,6 +199,7 @@
      
 
 
+    <div id="containerTerms" style="display:none;"></div>
 
 
    

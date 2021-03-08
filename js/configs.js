@@ -15,7 +15,8 @@ function Api(){
             "publiczipcodes":"public/zipcodes",
             "totemcustomersstore":"totem/customers/store",
             "printcupom":"printcupom",
-            "totemstoresinfo":"totem/stores/info"
+            "totemstoresinfo":"totem/stores/info",
+            "totemcorporationscontract":"totem/corporations/contract"
         
         }
         
