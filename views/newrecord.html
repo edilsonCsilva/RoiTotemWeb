@@ -17,9 +17,49 @@
     <title>{{title}}</title>
   </head>
   <body class="theme-roi-base">
+    <div id="inputSeachAddress"   class="seachAddressView"   >
+      <div class="" style="margin-left:10%"> 
+          <div class="card" style="width: 65em;">
+            <div class="card-header" >
+              
+              <div class="row">
+                  <div class="col-md-10">
+                    <input type="text"   id="input_address_seach" taborder="10"  stilltype="letters"
+                    class=" onfocusClick onchange form-control theme-border-black theme-btn-round theme-input-round"
+                    placeholder="Endereço">
+                  </div>
+
+                  <div class="col-md-2">
+                    <input type="button" id="btnCloseSeach" class="form-control  theme-border-black
+                    theme-btn-round theme-input-round btn-danger  " value="Fechar"> 
+                 </div>
+              </div>
+            
+            </div>
+            <ul class="list-group list-group-flush" id="listAddress">
+              
+            </ul>
+          </div>
+        </div>
+
+
+    <div id="context-son-1">
+    
+    </div>
+     
+  
+
+
+    </div>
+
+
     <div id="box-process">
        
     </div>
+
+    
+
+
     <header class="theme-border-black">
         <!-- Just an image -->
         <nav class="navbar theme-roi-brand-logo-base">
@@ -30,6 +70,10 @@
             </div>
         </nav>
     </header>
+
+
+
+
 
     <div class="container ">
         <!-- Content here -->
@@ -63,13 +107,31 @@
                                      placeholder="(11)91234-56789"     > 
                                 </div>
                               </div>
-                              
+                            
+                                  
                               <div class="row p-4 ">
-                                <div class="col-sm-6 ">
+                                
+                                <div class="col-sm-5 ">
                                   <input type="text"   id="input_address" taborder="3"  stilltype="letters"
                                   class=" onfocusClick form-control theme-border-black theme-btn-round theme-input-round"
                                    placeholder="Endereço">
+                                  
                                 </div>
+
+
+                                <div class="col-sm-1 ">
+                                  <button  inputparent="input_address" class="form-control  theme-border-black theme-btn-round  theme-input-round-seach btn-info seachAddress  " >
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+
+                                  </button>
+
+                                   
+                                </div>
+
+
+
+
+                                
                                 <div class="col-sm-6">
                                   
                                     <div class="row p-1">
@@ -182,20 +244,23 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-
-          
         </div>
         <!-- Content here -->
-
     </div>
 
 
 
-    <div id="containerstillkeyboard" class="still-keyboard-close fluid-screen"></div>
+    
+
+
+   
+
+
+
+
+    <div id="context-this">
+      <div id="containerstillkeyboard" class="still-keyboard-close fluid-screen"></div>
+    </div>
      
 
 

@@ -6,10 +6,13 @@ var modal = $("#msn")
 var boxProcess = $("#box-process")
 var containerTerms=""
 var waitingTime= new Date()
-
 var timesClicksPagers=80
 var timesContexSetInteval=null
 var limitTime=100
+var context=`<div id="containerstillkeyboard" class="still-keyboard-close fluid-screen"></div>`
+var contextSon1=$("#context-son-1")
+var contextThis=$("#context-this")
+
 
 
 
@@ -24,12 +27,14 @@ $(document).ready(function () {
 
 
 
+    $(".seachAddress").on("click",function(){
+        var inputparent=$(this).attr("inputparent")
+        searchByAddress(inputparent)
+    })
+
     $(".onclickTerms").on("click",function(){
         var configs = Api();
-
         try{
-
-           
             var config = {
 				headers: {
 					'Authorization': 'Bearer ' + token.data.token
@@ -40,37 +45,29 @@ $(document).ready(function () {
 				.then(function (response) {
                     console.log(response)
                     openTerms(response.data.contract)
-				 
 				}).then(data => {
 					console.log("1 ", data)
 				}).catch(error => {
 
                 })
-            
-
-
-
-
-
-
-           
         }catch(e){}
     })
+
 
 
 
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-           window.location.href = "/"
+          // window.location.href = "/"
             return
         }
-        console.log("click",timesClicksPagers)
+       // console.log("click",timesClicksPagers)
 
-    },6*100)
+    },12*100)
 
     $("body").mousemove(function(){
-        console.log("add ")
+        //sconsole.log("add ")
         if(timesClicksPagers < limitTime){
             timesClicksPagers++
         }
@@ -117,7 +114,7 @@ $(document).ready(function () {
                         }
                         getBoxProcess(boxProcess, false)
                     } catch (e) { getBoxProcess(boxProcess, false) }
-                    console.log(response)
+                  //  console.log(response)
                 })
         }($("#input_zipcode")), 1000)
     })
@@ -216,8 +213,6 @@ function getBoxProcess(boxUuid, visible) {
 
 function openTerms(terms){
   var newHeight=bodyDocumentHeight-250;
-  
-
   try{
 
 
@@ -230,6 +225,7 @@ function openTerms(terms){
                                 <button type="button" class="btn-close onClickClose"   data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                  <div class="modal-body">
+                                 
                                   <div id="divContent" class=' ' style="height:`+newHeight+`px; overflow:auto; ">
                                   :conteudo
                                   </div>
@@ -246,9 +242,9 @@ function openTerms(terms){
 
             template=template.replace(":conteudo",terms)          
             containerTerms.html(template).show()
-            $("#terms").slideDown(2000).show()
+            $("#terms").slideDown(1).show()
             $(".onClickClose").on("click", function(){
-                $("#terms").slideDown(2000) 
+                $("#terms").slideDown(60) 
                 $("#terms").slideUp(1000,function(){
                      containerTerms.html("").hide()
                     }
@@ -262,6 +258,116 @@ function openTerms(terms){
 
 }
 
+
+
+function  searchByAddress(inputparent){
+    var newHeight=bodyDocumentHeight;
+    try{
+        inputSeachAddress=$("#inputSeachAddress")
+        contextThis.html("")
+        contextSon1.html(context)
+        inputSeachAddress.attr("height",newHeight)
+        inputSeachAddress.show()
+        __initStillKeyboard()
+        window.scrollTo(0,0);
+
+       
+
+         
+
+
+        $("#input_address_seach").change(function () {
+            $(this).keyup()
+        })
+        $("#input_address_seach").keyup(function () {
+
+           console.log($(this).val())
+           var addressAndLocated=[]
+           var configs = Api();
+           try{
+               var config = {
+                   headers: {
+                       'Authorization': 'Bearer ' + token.data.token
+                   }
+               }
+               var apiUrl = configs.url + configs.routes.publiczipcodessearchaddress+"="+$(this).val()
+               $("#listAddress").html("")
+               $("#listAddress").html("<li class=\"p-3\"><b>Pesquisando...</b></li>")
+               
+               axios.get(apiUrl, config)
+               .then(function (response) {
+                    if(typeof response.data.zipcodes !="undefined"){
+                       if(response.data.zipcodes.length > 0){
+                           $("#listAddress").html("")
+                           var address=response.data.zipcodes
+                           for(next=0;next < address.length;next++){
+                                var address_=address[next].public_place+" ,"+address[next].district+" ,"+address[next].state
+                                if(addressAndLocated.indexOf(address_)===-1){
+                                    var actionAttributed=address[next].id
+                                    var actionAttributedZip=address[next].postal_code
+                                    addressAndLocated.push(address_)
+                                    $("#listAddress").append("<li   zipcode=\""+actionAttributedZip+"\" zipcodeId=\""+actionAttributed+"\" class=\"onClickListSelected p-3 list-group-item list-group-item-action \">"+address_+"</li>")
+
+                                }
+
+                           }
+
+                           $(".onClickListSelected").on("click",function(){
+                               var id=$(this).attr("zipcodeId")
+                               var zipcode=$(this).attr("zipcode")
+                               var address=$(this).text()
+                               if(zipcode!=="null"){
+                                        $("#input_zipcode").val(zipcode.replace(/[^\d]+/g,''))
+                               }
+                               $("#__zipcodeid__").val(id)
+                               $("#input_address").val(address)
+                               $("#btnCloseSeach").click()
+                            
+                           })
+                       }else{
+                        $("#listAddress").html("")
+                        $("#listAddress").html("<li class=\"p-3\"><b>Endereço não Localizado...</b></li>")
+                       }
+                   }else{
+                    $("#listAddress").html("")
+                   }
+               }).then(data => {
+                   console.log("1 ", data)
+               }).catch(error => {
+
+               })
+           }catch(e){}
+        })
+        $("#btnCloseSeach").on("click",function(){
+            if ($("#input_address_seach").hasClass("onchange")) {
+                $(this).removeClass("onchange")
+            }
+            __closeKeyBoard()
+           contextSon1.html("")
+           contextThis.html("")
+           contextThis.html(context)
+           inputSeachAddress.hide()
+           __initStillKeyboard()
+           $("#input_zipcode").focus()
+           $("#input_zipcode").click()
+           
+             
+
+        })
+
+
+
+     
+
+
+
+
+    }catch(e){
+        console.log(e)
+    }
+
+    
+}
 
 
 

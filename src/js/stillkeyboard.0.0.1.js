@@ -119,6 +119,11 @@ function _setScroll(x, y) {
 }
 function __initPadNum() {
    
+    if(keyboardNum.length > 0){
+        return false;
+    }
+
+    
     keyboardNum.push(new ActionComponet(1, "1", "flex-item onclickAction num-pad  num-pad-number btn-keys "))
     keyboardNum.push(new ActionComponet(2, "2", "flex-item onclickAction num-pad  num-pad-number btn-keys "))
     keyboardNum.push(new ActionComponet(3, "3", "flex-item onclickAction num-pad  num-pad-number btn-keys "))
@@ -136,6 +141,11 @@ function __initPadNum() {
 }
 
 function __initLetters() {
+
+
+    if(keyboardLetters.length > 0){
+        return false;
+    }
     
     var letters = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Ç","Z","X","C","V","B","N","M", "."]
     keyboardLetters = []
@@ -238,7 +248,7 @@ function __setOnActionClicks() {
 
 
 function __openKeyBoard() {
-
+    window.scrollTo(0,0);
     try {
         $(containerstillkeyboard)
             .addClass("still-keyboard-open")
@@ -249,7 +259,7 @@ function __openKeyBoard() {
                     var positionYScroll = parseInt($("body").height())
                     var newPositionBodyHeight = positionYScroll + containerstillkeyboardSize
                     $("body").height(newPositionBodyHeight)
-                    _setScroll(0, activeComponent.eixoPositions.y - parseInt(containerstillkeyboardSize /3))
+                    _setScroll(0, activeComponent.eixoPositions.y - parseInt(containerstillkeyboardSize /4))
                     console.log("#3 ", containerstillkeyboardSize, positionYScroll, newPositionBodyHeight, activeComponent.eixoPositions.y)
 
                 }
@@ -269,6 +279,7 @@ function __closeKeyBoard() {
             .removeClass("still-keyboard-open")
             .addClass("still-keyboard-close")
         var positionYScroll = parseInt($("body").height())
+        
         var newPositionBodyHeight = Math.abs(containerstillkeyboardSize)
         $("body").height(newPositionBodyHeight)
         containerstillkeyboard.innerHTML = ""
@@ -297,6 +308,7 @@ function __kybNum() {
 
 
 function __kybLetters() {
+    
     containerstillkeyboard.innerHTML = ""
     var numPad = "<div class=\"item-container flex-container\" >"
     numPad+="<center><div class=\"lettes\">"
@@ -306,6 +318,7 @@ function __kybLetters() {
     numPad += "</div>";
     numPad += "</div>";
     containerstillkeyboard.innerHTML = numPad
+    
 
     __setOnActionClicks()
 }
@@ -332,6 +345,11 @@ function __events(events, activatedComponent) {
     } else if (eventsClick == deletedChart) {
 
         if (activeComponent.self.value.trim().length > 0) {
+
+            if ($(activeComponent.self).hasClass("onchange")) {
+                $(activeComponent.self).change()
+            }
+            
             var size = activeComponent.self.value.length - 1
             var objectCopy = activeComponent.self.value
             $("#" + activeComponent.uuid).val(objectCopy.substr(0, size))

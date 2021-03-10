@@ -8,6 +8,20 @@
 
 
 
+.seachAddressView{
+    
+     position:absolute;
+     z-index:50;
+    
+     height: 100%;
+     width: 100%;
+     background-color:#000;
+     display:none;
+     
+
+
+}
+
 .brand-logo{
     height:80px;
 }
@@ -68,6 +82,14 @@
     height:60px;
     
 }
+
+
+.theme-input-round-seach{
+    margin-top:5px;
+    height:55px;
+    
+}
+
  
 input {
     display: inline-block;
