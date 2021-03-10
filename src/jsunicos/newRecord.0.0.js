@@ -59,7 +59,7 @@ $(document).ready(function () {
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-          // window.location.href = "/"
+           window.location.href = "/"
             return
         }
        // console.log("click",timesClicksPagers)
@@ -261,21 +261,16 @@ function openTerms(terms){
 
 
 function  searchByAddress(inputparent){
-    var newHeight=bodyDocumentHeight;
+    var newHeight=document.body.scrollHeight;
     try{
         $("#listAddress").html("")
         inputSeachAddress=$("#inputSeachAddress")
         contextThis.html("")
         contextSon1.html(context)
-        inputSeachAddress.attr("height",newHeight)
+        inputSeachAddress.attr("height",document.body.scrollHeight)
         inputSeachAddress.show()
         __initStillKeyboard()
         window.scrollTo(0,0);
-
-       
-
-         
-
         $("#input_address_seach").val("")
         $("#input_address_seach").focus()
         $("#input_address_seach").click()
@@ -322,6 +317,7 @@ function  searchByAddress(inputparent){
                                if(zipcode!=="null"){
                                         $("#input_zipcode").val(zipcode.replace(/[^\d]+/g,''))
                                }
+                               __closeKeyBoard()
                                $("#__zipcodeid__").val(id)
                                $("#input_address").val(address)
                                $("#btnCloseSeach").click()
@@ -333,11 +329,13 @@ function  searchByAddress(inputparent){
                        }
                    }else{
                     $("#listAddress").html("")
+                    __closeKeyBoard()
                    }
                }).then(data => {
                    console.log("1 ", data)
+                   __closeKeyBoard()
                }).catch(error => {
-
+                __closeKeyBoard()
                })
            }catch(e){}
         })
