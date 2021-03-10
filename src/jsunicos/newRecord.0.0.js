@@ -263,6 +263,7 @@ function openTerms(terms){
 function  searchByAddress(inputparent){
     var newHeight=bodyDocumentHeight;
     try{
+        $("#listAddress").html("")
         inputSeachAddress=$("#inputSeachAddress")
         contextThis.html("")
         contextSon1.html(context)
@@ -275,7 +276,9 @@ function  searchByAddress(inputparent){
 
          
 
-
+        $("#input_address_seach").val("")
+        $("#input_address_seach").focus()
+        $("#input_address_seach").click()
         $("#input_address_seach").change(function () {
             $(this).keyup()
         })
