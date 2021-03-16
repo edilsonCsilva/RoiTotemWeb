@@ -59,7 +59,7 @@ $(document).ready(function () {
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-           window.location.href = "/"
+          // window.location.href = "/"
             return
         }
        // console.log("click",timesClicksPagers)
@@ -317,7 +317,7 @@ function  searchByAddress(inputparent){
                                if(zipcode!=="null"){
                                         $("#input_zipcode").val(zipcode.replace(/[^\d]+/g,''))
                                }
-                               __closeKeyBoard()
+                               
                                $("#__zipcodeid__").val(id)
                                $("#input_address").val(address)
                                $("#btnCloseSeach").click()
@@ -329,13 +329,13 @@ function  searchByAddress(inputparent){
                        }
                    }else{
                     $("#listAddress").html("")
-                    __closeKeyBoard()
+                    
                    }
                }).then(data => {
                    console.log("1 ", data)
-                   __closeKeyBoard()
+                   
                }).catch(error => {
-                __closeKeyBoard()
+                
                })
            }catch(e){}
         })

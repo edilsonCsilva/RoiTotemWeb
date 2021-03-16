@@ -1,19 +1,17 @@
 var activeComponent = null
 var activeComponentOldAccessed = null
-
 var containerstillkeyboard = null
 var containerstillkeyboardSize = 0
+var bodyInitContener=0
 var keyboardNum = []
 var keyboardLetters = []
 var tabComponent = [];
 var capLook = true;
-
 var enter = -400
 var stop = -401
 var deletedChart = -402
 var capLooks = -403
 var turnBack = -404
-
 //function construtoras
 function InputElement(id, name, positionTheScreen, taborder) {
     return {
@@ -255,12 +253,13 @@ function __openKeyBoard() {
             .slideDown(2000,
                 function () {
                     //alert("Slide concluido");
-                    containerstillkeyboardSize = containerstillkeyboard.getBoundingClientRect().height
+                    containerstillkeyboardSize =80 // containerstillkeyboard.getBoundingClientRect().height
                     var positionYScroll = parseInt($("body").height())
                     var newPositionBodyHeight = positionYScroll + containerstillkeyboardSize
                     $("body").height(newPositionBodyHeight)
-                    _setScroll(0, activeComponent.eixoPositions.y - parseInt(containerstillkeyboardSize /4))
-                    console.log("#3 ", containerstillkeyboardSize, positionYScroll, newPositionBodyHeight, activeComponent.eixoPositions.y)
+                    _setScroll(0, activeComponent.eixoPositions.y -(containerstillkeyboardSize/4))
+                    //_setScroll(0, parseInt(activeComponent.eixoPositions.y/3))
+                    ///console.log("#3 ", containerstillkeyboardSize, positionYScroll, newPositionBodyHeight, activeComponent.eixoPositions.y)
 
                 }
             );
@@ -268,7 +267,7 @@ function __openKeyBoard() {
 
 
     } catch (e) {
-        console.log(e)
+        //console.log(e)
         alert("Error")
     }
 }
@@ -281,7 +280,7 @@ function __closeKeyBoard() {
         var positionYScroll = parseInt($("body").height())
         
         var newPositionBodyHeight = Math.abs(containerstillkeyboardSize)
-        $("body").height(newPositionBodyHeight)
+        $('body').height(bodyInitContener.height);
         containerstillkeyboard.innerHTML = ""
 
     } catch (e) {
@@ -430,6 +429,18 @@ function __events(events, activatedComponent) {
                 if (typeof tabComponent[i] != 'undefined') {
                     $("#" + tabComponent[i]._id).focus()
                     $("#" + tabComponent[i]._id).click()
+                    console.log($("#" + tabComponent[i]._id).hasClass("offFocus"))
+
+                    if($("#" + tabComponent[i]._id).hasClass("offFocus")){
+                        __closeKeyBoard()
+                        i++
+                        $("#" + tabComponent[i]._id).focus()
+                        $("#" + tabComponent[i]._id).click()
+                        break
+                    }
+
+
+
                     return
 
                 }
@@ -443,13 +454,31 @@ function __events(events, activatedComponent) {
                 var i = indice
                 i--
                 if (typeof tabComponent[i] != 'undefined') {
+                    //offFocus
                     $("#" + tabComponent[i]._id).focus()
                     $("#" + tabComponent[i]._id).click()
+                    console.log($("#" + tabComponent[i]._id).hasClass("offFocus"))
+                    if($("#" + tabComponent[i]._id).hasClass("offFocus")){
+                        __closeKeyBoard()
+                        i--
+                        $("#" + tabComponent[i]._id).focus()
+                        $("#" + tabComponent[i]._id).click()
+                        break
+                    }
+
+
                     return
                 }
+
+                console.log(tabComponent.length,i)
                 break
             }
         }
+
+
+
+
+
     } else {
         console.log(__ascii(eventsClick,false))
         alert("Evento Não Loacalizado : [" + eventsClick + "]")
@@ -491,7 +520,7 @@ function mTel(tel) {
 
 //Inicia o Documento
 $(document).ready(function () {
-
+    bodyInitContener=document.getElementsByTagName("body")[0].getBoundingClientRect()
     __initStillKeyboard()
 
     $(".onfocusClick").focus(function () {
@@ -502,8 +531,6 @@ $(document).ready(function () {
             typekeyborad: this.getAttribute("stilltype"),
             eixoPositions: this.getBoundingClientRect()
         };
-
-
         return false;
     })
 
