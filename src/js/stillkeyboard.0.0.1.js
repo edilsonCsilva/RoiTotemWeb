@@ -12,6 +12,8 @@ var stop = -401
 var deletedChart = -402
 var capLooks = -403
 var turnBack = -404
+var targetParent=null
+
 //function construtoras
 function InputElement(id, name, positionTheScreen, taborder) {
     return {
@@ -115,7 +117,7 @@ function _setScroll(x, y) {
     window.scrollTo(0,0);
     window.scrollTo(x, y);
 }
-function __initPadNum() {
+function __initPadNum( ) {
    
     if(keyboardNum.length > 0){
         return false;
@@ -139,12 +141,9 @@ function __initPadNum() {
 }
 
 function __initLetters() {
-
-
     if(keyboardLetters.length > 0){
         return false;
     }
-    
     var letters = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Ç","Z","X","C","V","B","N","M", "."]
     keyboardLetters = []
     if (capLook) {
@@ -176,6 +175,7 @@ function __initLetters() {
         // keyboardLetters.push(new ActionComponet(capLooks,"<i class=\"fa fa-level-up\" aria-hidden=\"true\"></i>","flex-item onclickAction num-pad btn-info"))
 
     }
+
     spaceClass = "space spacer-50 "
     keyboardLetters.push(new ActionComponet(deletedChart, "<i class=\"fa fa-backward\" aria-hidden=\"true\"></i>", "flex-item onclickAction num-pad  num-close-keys"))
     keyboardLetters.push(new ActionComponet(stop, "Fechar", "flex-item onclickAction num-pad num-close-keys"))
@@ -183,7 +183,7 @@ function __initLetters() {
     keyboardLetters.push(new ActionComponet(32, "       ", "flex-item onclickAction num-pad  " + spaceClass))
     keyboardLetters.push(new ActionComponet(enter, "Próximo", "flex-item onclickAction num-pad num-next-keys"))
 
-
+    
 }
 
 
@@ -194,6 +194,7 @@ function __initStillKeyboard() {
     var msn = "Container de Teclado Indefinido: ID:containerstillkeyboard"
     try {
         containerstillkeyboard = $("#containerstillkeyboard")
+         targetParent = $(containerstillkeyboard).parent();
         tabComponent = []
 
         if (typeof containerstillkeyboard.length && containerstillkeyboard.length > 0) {
@@ -312,13 +313,32 @@ function __kybLetters() {
     var numPad = "<div class=\"item-container flex-container\" >"
     numPad+="<center><div class=\"lettes\">"
     for (poss = 0; poss < keyboardLetters.length; poss++) {
-        numPad += "<button class=\"" + keyboardLetters[poss]._class + "\" stillValue=\"" + keyboardLetters[poss]._id + "\">" + keyboardLetters[poss]._label + "</button>"
+        var disabled=""
+        
+
+        console.log(targetParent.hasClass("disabledBack"),targetParent.hasClass("disabledNext"))
+
+        if(targetParent.hasClass("disabledBack") ){
+            if(keyboardLetters[poss]._id==turnBack){
+                disabled="disabled"
+            }
+            
+        }
+
+        if(targetParent.hasClass("disabledNext")){
+            if(keyboardLetters[poss]._id==enter){
+                disabled="disabled"
+            }
+        }
+        if(disabled.length==0)
+            numPad += "<button  "+disabled+" class=\"" + keyboardLetters[poss]._class + "\" stillValue=\"" + keyboardLetters[poss]._id + "\">" + keyboardLetters[poss]._label + "</button>"
+
     }
     numPad += "</div>";
     numPad += "</div>";
     containerstillkeyboard.innerHTML = numPad
     
-
+    
     __setOnActionClicks()
 }
 

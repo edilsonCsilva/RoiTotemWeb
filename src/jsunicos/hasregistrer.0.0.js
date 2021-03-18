@@ -83,11 +83,11 @@ $(document).ready(function () {
                     'Authorization': 'Bearer ' + token.data.token
                 }
             }
-            var apiUrl = configs.url + configs.routes.totemcustomers + "/search?phone=" + $("#input_fone").val()
+            var apiUrl = configs.url + configs.routes.totemcustomers + "/search?phone=" + $("#input_fone").val().replace(/[^\d]+/g,'')
             axios.get(apiUrl, configRequestsAxios)
                 .then(function (response) {
                     if (response == undefined) {
-                        s
+                        
                         isClick = false;
                     }
                     localStorger.insert("customers", JSON.stringify(response.data.customer))
@@ -111,7 +111,7 @@ $(document).ready(function () {
                                 showConfirmButton: false,
                                 timer: 3500,
                                 willClose: () => {
-                                    window.location.href = "/"
+                                     window.location.href = "/"
                                 }
                             })
 
@@ -133,7 +133,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 3500,
                         willClose: () => {
-                            window.location.href = "/"
+                             window.location.href = "/"
                         }
                     })
 

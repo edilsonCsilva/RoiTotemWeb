@@ -93,7 +93,7 @@ app.post("/printcupom", function (req, res) {
     var pdf = new PdfKit();
     var arquivos = uuidv4() + '.pdf'
     var print_disp = ["Epson_Stylus_TX230", "CUSTOM VKP80 II", "Samsung_M262x_282x_Series"]
-    var defaultprint = 1
+    var defaultprint =0
 
     try {
         var x = 0, y = 0

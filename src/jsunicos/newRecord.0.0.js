@@ -12,6 +12,9 @@ var limitTime=100
 var context=`<div id="containerstillkeyboard" class="still-keyboard-close fluid-screen"></div>`
 var contextSon1=$("#context-son-1")
 var contextThis=$("#context-this")
+var contextActive="undefined"
+
+
 
 
 
@@ -59,7 +62,8 @@ $(document).ready(function () {
     timesContexSetInteval=setInterval(function () {
         timesClicksPagers--
         if(timesClicksPagers==0){
-          // window.location.href = "/"
+             
+           window.location.href = "/"
             return
         }
        // console.log("click",timesClicksPagers)
@@ -92,7 +96,7 @@ $(document).ready(function () {
         waitingTime= new Date()
         getBoxProcess(boxProcess, true)
         setTimeout(function (el) {
-            var zipcode = $(el).val()
+            var zipcode = $(el).val().replace(/[^\d]+/g,'')
             var configs = Api();
             var configRequestsAxios = {
                 headers: {
@@ -122,7 +126,7 @@ $(document).ready(function () {
         waitingTime= new Date()
         var data = {
             full_name: $("#input_name").val(),
-            phone: $("#input_phone").val(),
+            phone: $("#input_phone").val().replace(/[^\d]+/g,''),
             address: $("#input_address").val(),
             zipcode_id: $("#__zipcodeid__").val(),
             number_house: $("#input_number").val(),
@@ -267,6 +271,7 @@ function  searchByAddress(inputparent){
         inputSeachAddress=$("#inputSeachAddress")
         contextThis.html("")
         contextSon1.html(context)
+    
         inputSeachAddress.attr("height",document.body.scrollHeight)
         inputSeachAddress.show()
         __initStillKeyboard()
@@ -347,6 +352,7 @@ function  searchByAddress(inputparent){
            contextSon1.html("")
            contextThis.html("")
            contextThis.html(context)
+          
            inputSeachAddress.hide()
            __initStillKeyboard()
            $("#input_zipcode").focus()
