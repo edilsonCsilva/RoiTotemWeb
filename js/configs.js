@@ -1,9 +1,9 @@
 function Api(){
     return {
         "url":"https://api-roi.stilldistribuidora.com.br/",
-        "username":"user2",
-        "password":"user2",
-        "companyName":"Company Name",
+        "username":"perola",
+        "password":"123456",
+        "companyName":"Supermercado Peróla",
         "companysadress":"company's adress",
         "cnpj":"CNPJ : 29.021.114/0001-08",
         "ie":  " IE  : 017.024.334.838",

@@ -71,25 +71,23 @@ $(document).ready(function () {
 
 		//$("#qrContent p").text(data);
 		if (resumeScanner.length > 0) {
-			console.log(resumeScanner)
 			beep(100, 1, function () { });
-			var resumeScanner = resumeScanner.split(":")
+			var resumeScanner = resumeScanner.split("|")
 			var config = {
 				headers: {
 					'Authorization': 'Bearer ' + token.data.token
 				}
 			}
-			var apiUrl = configs.url + configs.routes.totemcampaigns + "/search?hash=" + resumeScanner[1]
+			var apiUrl = configs.url + configs.routes.totemcampaigns + "/search?" + resumeScanner[1]
 			axios.get(apiUrl, config)
 				.then(function (response) {
-					clearInterval(scanner)
-					console.log(response)
-					localStorger.insert("campaign", JSON.stringify(response.data.campaign))
-					location.href = "/selectaccess"
-				}).then(data => {
+        	clearInterval(scanner)
+			localStorger.insert("campaign", JSON.stringify(response.data.campaign))
+			location.href = "/selectaccess"
+			}).then(data => {
 					console.log("1 ", data)
-				})
-				.catch(error => {
+			})
+			.catch(error => {
 					clearInterval(scanner)
 					Swal.fire({
 						position: 'top-end',
@@ -103,7 +101,7 @@ $(document).ready(function () {
 						}
 					})
 				});
-			//alert(data)
+			 
 		}
 	}
 
