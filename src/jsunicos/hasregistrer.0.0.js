@@ -79,6 +79,7 @@ $(document).ready(function () {
         setTimeout(function () {
             var configs = Api();
             var configRequestsAxios = {
+                validateStatus:false,
                 headers: {
                     'Authorization': 'Bearer ' + token.data.token
                 }
@@ -87,7 +88,6 @@ $(document).ready(function () {
             axios.get(apiUrl, configRequestsAxios)
                 .then(function (response) {
                     if (response == undefined) {
-                        
                         isClick = false;
                     }
                     localStorger.insert("customers", JSON.stringify(response.data.customer))
@@ -97,21 +97,37 @@ $(document).ready(function () {
                     axios.post(configs.url + configs.routes.totemcampaignscustomer,
                         { campaign_id: campaign_id, customer_id: customer_id }, configRequestsAxios)
                         .then(function (response) {
-                            location.href = "/printcupom"
-                        }).then(data => {
-                            console.log("1 ", data)
-                        })
-                        .catch(error => {
 
+                            if(response.status!=201){
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: response.data.message,
+                                    showConfirmButton: false,
+                                    timer: 5500,
+                                    willClose: () => {
+                                         window.location.href = "/"
+                                    }
+                                })
+                            }else{
+                                location.href = "/printcupom"
+                            }
+                            
+                           
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                            alert("1s")
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: 'Telefone Não Localizado.!',
                                 showConfirmButton: false,
-                                timer: 3500,
+                                timer: 4500,
                                 willClose: () => {
-                                     window.location.href = "/"
+                                      window.location.href = "/"
                                 }
                             })
 
@@ -133,12 +149,12 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 3500,
                         willClose: () => {
-                             window.location.href = "/"
+                           //  window.location.href = "/"
                         }
                     })
 
                     setTimeout(function () {
-                        location.href = "/"
+                       //location.href = "/"
                     }, 2000)
                 });
 

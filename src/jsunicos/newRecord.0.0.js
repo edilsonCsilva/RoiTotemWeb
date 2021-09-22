@@ -39,6 +39,7 @@ $(document).ready(function () {
         var configs = Api();
         try{
             var config = {
+                validateStatus:false,
 				headers: {
 					'Authorization': 'Bearer ' + token.data.token
 				}
@@ -99,6 +100,7 @@ $(document).ready(function () {
             var zipcode = $(el).val().replace(/[^\d]+/g,'')
             var configs = Api();
             var configRequestsAxios = {
+                validateStatus:false,
                 headers: {
                     'Authorization': 'Bearer ' + token.data.token
                 }
@@ -164,6 +166,7 @@ $(document).ready(function () {
             localStorger.insert("customers", JSON.stringify(data))
             var configs = Api();
             var configRequestsAxios = {
+                validateStatus:false,
                 headers: {
                     'Authorization': 'Bearer ' + token.data.token
                 }

@@ -72,8 +72,8 @@ $(document).ready(function () {
 		//$("#qrContent p").text(data);
 		if (resumeScanner.length > 0) {
 			beep(100, 1, function () { });
-			var resumeScanner = resumeScanner.split("|")
-			var config = {
+			var resumeScanner = resumeScanner.split("?")
+ 			var config = {
 				headers: {
 					'Authorization': 'Bearer ' + token.data.token
 				}
@@ -81,7 +81,7 @@ $(document).ready(function () {
 			var apiUrl = configs.url + configs.routes.totemcampaigns + "/search?" + resumeScanner[1]
 			axios.get(apiUrl, config)
 				.then(function (response) {
-        	clearInterval(scanner)
+			clearInterval(scanner)
 			localStorger.insert("campaign", JSON.stringify(response.data.campaign))
 			location.href = "/selectaccess"
 			}).then(data => {
@@ -97,7 +97,7 @@ $(document).ready(function () {
 						showConfirmButton: false,
 						timer: 2000,
 						willClose: () => {
-							window.location.href = "/"
+						   window.location.href = "/"
 						}
 					})
 				});
@@ -182,7 +182,7 @@ function readQRCode() {
 		setInterval(function () {
 			$('#scan').click()
 			console.log("read")
-		}, 500)
+		}, 400)
 	} catch (e) { }
 }
 

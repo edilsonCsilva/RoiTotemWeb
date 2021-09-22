@@ -2,13 +2,12 @@ var localStorger = new LocalStorger()
 var token = localStorger.getToObject("token")
 var customers = localStorger.getToObject("customers")
 var campaign = localStorger.getToObject("campaign")
+ 
 if (token == null || token.data.length == 0 || campaign == null) {
     location.href = "/"
 }
 $(document).ready(function () {
-
     try {
-
         $("#spName").html(customers.full_name)
         var configs = Api();
         var configRequestsAxios = {
@@ -20,10 +19,16 @@ $(document).ready(function () {
             cnpj: configs.cnpj,
             ie: configs.ie,
             customers: customers.full_name,
-            barcode: campaign.barcode
+            barcode: campaign.barcode,
+            description:campaign.description
+           
         }
+
+
+         
         axios.post("/" + configs.routes.printcupom,
             data, configRequestsAxios).then(function (response) {
+                console.log()
 
                 Swal.fire({
                     position: 'top-end',
@@ -49,6 +54,6 @@ $(document).ready(function () {
         })
     }
     setTimeout(function () {
-        location.href = "/"
+         location.href = "/"
     }, 9 * 10000)
 });

@@ -93,7 +93,7 @@ app.post("/printcupom", function (req, res) {
     var pdf = new PdfKit();
     var arquivos = uuidv4() + '.pdf'
     var print_disp = ["Epson_Stylus_TX230", "CUSTOM VKP80 II", "Samsung_M262x_282x_Series"]
-    var defaultprint =0
+    var defaultprint =1
 
     try {
         var x = 0, y = 0
@@ -106,6 +106,8 @@ app.post("/printcupom", function (req, res) {
             "address": dataBodyPosts.companysadress,
             "infoCnpj": dataBodyPosts.cnpj,
             "infoIe": dataBodyPosts.ie,
+            "descricao": dataBodyPosts.description
+            
         }
         JsBarcode(canvas, dataBodyPosts.barcode, x, 100, { format: "ean13", height: 10 });
         pdf.fontSize('9')
@@ -119,11 +121,36 @@ app.post("/printcupom", function (req, res) {
         pdf.text('*******************************************************', x, y += 25)
 
         pdf
+        .fontSize('9')
+        .fillColor('#0000')
+        .text('Itens:', x, y += 15, {
+            align: 'left'
+        })
+
+
+        for(i=0;i < 25;i++){
+
+            pdf
+            .fontSize('9')
+            .fillColor('#0000')
+            .text(dataBodyPosts.description, x, y += 15, {
+                align: 'left'
+            })
+
+        }
+
+        pdf
             .fontSize('18')
             .fillColor('#0000')
             .text('lembre-se:', x, y += 25, {
                 align: 'left'
             })
+
+        
+
+
+
+
 
         pdf
             .fontSize('10')
@@ -143,6 +170,7 @@ app.post("/printcupom", function (req, res) {
                 align: 'left'
             })
 
+            
 
         pdf.pipe(fs.createWriteStream(arquivos))
             .on('finish', function () {
@@ -159,7 +187,7 @@ app.post("/printcupom", function (req, res) {
                 });
                 prc.on('close', function (code) {
                     console.log('process exit code ' + code);
-                    fs.unlinkSync(arquivos);
+                     fs.unlinkSync(arquivos);
                 });
 
             });
