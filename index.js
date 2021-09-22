@@ -97,6 +97,7 @@ app.post("/printcupom", function (req, res) {
 
     try {
         var x = 0, y = 0
+        const frases=[]
         const { createCanvas } = require("canvas");
         const canvas = createCanvas();
         var dataBodyPosts = req.body
@@ -112,6 +113,31 @@ app.post("/printcupom", function (req, res) {
         JsBarcode(canvas, dataBodyPosts.barcode, x, 100, { format: "ean13", height: 10 });
         pdf.fontSize('9')
         x = 15
+
+
+        //quebra a descrição
+        
+        var limit =x
+        var listPrints=[]
+        var descriptions = dataBodyPosts.description.split("\n")
+        for(next=0;next < descriptions.length;next++){
+            if(descriptions[next].length < 15){
+                listPrints.push(descriptions[next])
+            }else{
+                var descriptionSize=Math.ceil(descriptions[next].length/limit)
+                for(descriptionNext=0;descriptionNext < descriptionSize; descriptionNext++){
+                    listPrints.push(descriptions[next].substr(0,limit))	
+                    descriptions[next]=descriptions[next].substr(1,descriptions[next].length)
+                }
+            }
+        }
+        
+
+
+
+       
+
+
         pdf.text(data.name, x, y += 15)
         pdf.text(data.address, x, y += 15)
         pdf.text(data.infoCnpj, x, y += 15)
@@ -128,12 +154,11 @@ app.post("/printcupom", function (req, res) {
         })
 
 
-        for(i=0;i < 25;i++){
-
+        for(i=0;i < listPrints.length;i++){
             pdf
             .fontSize('9')
             .fillColor('#0000')
-            .text(dataBodyPosts.description, x, y += 15, {
+            .text(listPrints[i], x, y += 15, {
                 align: 'left'
             })
 
@@ -187,7 +212,7 @@ app.post("/printcupom", function (req, res) {
                 });
                 prc.on('close', function (code) {
                     console.log('process exit code ' + code);
-                     fs.unlinkSync(arquivos);
+                    fs.unlinkSync(arquivos);
                 });
 
             });
