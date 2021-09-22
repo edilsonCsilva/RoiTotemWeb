@@ -131,17 +131,10 @@ app.post("/printcupom", function (req, res) {
                 }
             }
         }
-        
-
-
-
-       
-
-
         pdf.text(data.name, x, y += 15)
-        pdf.text(data.address, x, y += 15)
-        pdf.text(data.infoCnpj, x, y += 15)
-        pdf.text(data.infoIe, x, y += 15)
+        pdf.text(data.address, x, y += 20)
+        pdf.text(data.infoCnpj, x, y += 20)
+        pdf.text(data.infoIe, x, y += 10)
         pdf.text('*******************************************************', x, y += 30)
         pdf.text('             Cupom Fiscal Eletronico-SAT               ', x, y += 20)
         pdf.text('*******************************************************', x, y += 25)
